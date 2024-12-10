@@ -1,5 +1,6 @@
 # Repository_Manager
 
+```bash
 if [[! -f "main.zip"]]; then
 wget https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip
 fi
@@ -22,3 +23,4 @@ rm -rf main.zip
 
 chmod +x Repository_Manager/program
 ./Repository_Manager/program
+```
