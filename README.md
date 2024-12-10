@@ -2,25 +2,25 @@
 
 ```bash
 if [[! -f "main.zip"]]; then
-wget https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip
+    sudo wget https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip
 fi
 
 echo "Checking for 7zip installation..."
 if ! dpkg -l | grep -q "7zip"; then
-echo "7zip is not installed. Installing Git..."
-sudo apt update && sudo apt install -y 7zip
+    echo "7zip is not installed. Installing Git..."
+    sudo apt update && sudo apt install -y 7zip
 else
-echo "7zip is already installed."
+    echo "7zip is already installed."
 fi
 
 if [[-f Repository_Manager-main]]; then
-rm -rf Repository_Manager-main
+    sudo rm -rf Repository_Manager-main
 fi
 
-unzip main.zip
-mv Repository_Manager-main Repository_Manager
-rm -rf main.zip
+sudo unzip main.zip
+sudo mv Repository_Manager-main Repository_Manager
+sudo rm -rf main.zip
 
-chmod +x Repository_Manager/program
-./Repository_Manager/program
+sudo chmod +x Repository_Manager/program
+sudo ./Repository_Manager/program
 ```
