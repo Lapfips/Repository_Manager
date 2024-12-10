@@ -1,2 +1,63 @@
 #!/bin/bash
 
+echo "Checking for Git installation..."
+if ! dpkg -l | grep -q "git"; then
+  echo "Git is not installed. Installing Git..."
+  sudo apt update && sudo apt install -y git
+else
+    echo "Git is already installed."
+fi
+
+HAS_SSH_KEY_LOOP="false"
+while [[ $HAS_SSH_KEY_LOOP == "false" ]]; do
+    read -p "Do you already have a ssh key? (y or n): " SSH_KEY
+    case $SSH_KEY in
+        [Yy]*) HAS_SSH_KEY_LOOP="true"
+        break ;;
+        [Nn]*) ssh-keygen -t ed25519
+        echo -e "\n$(cat ~/.ssh/id_ed25519.pub)\nPaste this key on your GitHub profile --> https://github.com/settings/keys\n"
+        HAS_SSH_KEY_LOOP="true"
+        break ;;
+        *) echo "Please answer y or n." ;;
+    esac
+done
+
+read -p "Enter your GitHub email to log in : " EMAIL
+read -p "Enter your GitHub name to log in : " NAME
+
+git config --global user.name "$NAME"
+git config --global user.email "$EMAIL"
+
+cd ~
+if [[ ! -d Repository_Manager ]]; then
+    echo "Cloning the Repository_Manager repository..."
+    git clone git@github.com:Lapfips/Repository_Manager.git | { echo "Failed to clone repository. Exiting."; exit 1; }
+
+else
+    echo "Updating the repository..."
+    cd ~/Repository_Manager && git pull | echo "Failed to access Repository_Manager directory. Exiting."
+fi
+
+if [[ -f ~/.bash_profile ]]; then
+    echo -e "\nHere is the current content of the .bash_profile from the repository:"
+    echo -e "\n$(cat ~/Repository_Manager/.bash_profile)\n"
+    OVERWRITE_BASH_PROFILE_LOOP="false"
+    while [[ $OVERWRITE_BASH_PROFILE_LOOP == "false" ]]; do
+        read -p "Do you agree to overwrite your .bash_profile with above ? (y or n) : " CHOICE
+        case $CHOICE in
+            [Yy]*) OVERWRITE_BASH_PROFILE_LOOP="true"
+            echo ".bash_profile has been updated."
+            cp ~/Repository_Manager/.bash_profile ~/.bash_profile
+            break ;;
+            [Nn]*) OVERWRITE_BASH_PROFILE_LOOP="true"
+            echo "No changes were made to your .bash_profile."
+            break ;;
+            *) echo "Please answer y or n." ;;
+        esac
+    done
+else
+    echo "Creating a new .bash_profile..."
+    cp ~/Repository_Manager/.bash_profile ~/.bash_profile
+    echo ".bash_profile has been created."
+fi
+echo ""
