@@ -8,7 +8,7 @@ else
     echo "Git is already installed."
 fi
 
-if [[ -d "~/.ssh" ]]; then
+if [[ -d ".ssh" ]]; then
     HAS_SSH_KEY_LOOP="false"
     while [[ $HAS_SSH_KEY_LOOP == "false" ]]; do
         read -p "You already have a ssh key do you want to overwrite it? (y or n): " SSH_KEY
@@ -28,7 +28,7 @@ else
     echo -e "\n$(cat ~/.ssh/id_ed25519.pub)\nPaste this key on your GitHub profile --> https://github.com/settings/keys\n"
 fi
 
-if [[ -f "~/.gitconfig" ]]; then
+if [[ -f ".gitconfig" ]]; then
     echo -e "\nHere is the current content of your .gitconfig file:"
     echo -e "\n$(cat ~/.gitconfig)\n"
     OVERWRITE_GITCONFIG_LOOP="false"
@@ -57,9 +57,7 @@ else
     echo ".gitconfig has been created"
 fi
 
-cd ~
-
-if [[ -f "~/.bash_profile" ]]; then
+if [[ -f ".bash_profile" ]]; then
     echo -e "\nHere is the current content of your .bash_profile file:"
     echo -e "\n$(cat ~/Repository_Manager/.bash_profile)\n"
     OVERWRITE_BASH_PROFILE_LOOP="false"
