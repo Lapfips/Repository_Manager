@@ -22,11 +22,34 @@ while [[ $HAS_SSH_KEY_LOOP == "false" ]]; do
     esac
 done
 
-read -p "Enter your GitHub email to log in : " EMAIL
-read -p "Enter your GitHub name to log in : " NAME
-
-git config --global user.name "$NAME"
-git config --global user.email "$EMAIL"
+if [[ -f "~/.gitconfig" ]]; then
+    echo -e "\nHere is the current content of your .gitconfig file:"
+    echo -e "\n$(cat ~/.gitconfig)\n"
+    OVERWRITE_GITCONFIG_LOOP="false"
+    while [[ $OVERWRITE_GITCONFIG_LOOP == "false" ]]; do
+        read -p "Do you agree to overwrite your .gitconfig ? (y or n) : " CHOICE
+        case $CHOICE in
+            [Yy]*) OVERWRITE_GITCONFIGE_LOOP="true"
+            read -p "Enter your GitHub email to log in : " EMAIL
+            read -p "Enter your GitHub name to log in : " NAME
+            git config --global user.name "$NAME"
+            git config --global user.email "$EMAIL"
+            echo ".gitconfig has been updated."
+            break ;;
+            [Nn]*) OVERWRITE_GITCONFIG_LOOP="true"
+            echo "No changes were made to your .gitconfig file"
+            break ;;
+            *) echo -e "Please answer y or n\n" ;;
+        esac
+    done
+else
+    echo "Configuring a .gitconfig file..."
+    read -p "Enter your GitHub email to log in : " EMAIL
+    read -p "Enter your GitHub name to log in : " NAME
+    git config --global user.name "$NAME"
+    git config --global user.email "$EMAIL"
+    echo ".gitconfig has been created"
+fi
 
 cd ~
 if [[ -d Repository_Manager ]]; then
@@ -34,12 +57,12 @@ if [[ -d Repository_Manager ]]; then
     cd ~/Repository_Manager && git pull | echo "Failed to access Repository_Manager directory. Exiting."
 fi
 
-if [[ -f ~/.bash_profile ]]; then
-    echo -e "\nHere is the current content of the .bash_profile from the repository:"
+if [[ -f "~/.bash_profile" ]]; then
+    echo -e "\nHere is the current content of your .bash_profile file:"
     echo -e "\n$(cat ~/Repository_Manager/.bash_profile)\n"
     OVERWRITE_BASH_PROFILE_LOOP="false"
     while [[ $OVERWRITE_BASH_PROFILE_LOOP == "false" ]]; do
-        read -p "Do you agree to overwrite your .bash_profile with above ? (y or n) : " CHOICE
+        read -p "Do you agree to overwrite your .bash_profile ? (y or n) : " CHOICE
         case $CHOICE in
             [Yy]*) OVERWRITE_BASH_PROFILE_LOOP="true"
             echo ".bash_profile has been updated."
@@ -48,12 +71,12 @@ if [[ -f ~/.bash_profile ]]; then
             [Nn]*) OVERWRITE_BASH_PROFILE_LOOP="true"
             echo "No changes were made to your .bash_profile."
             break ;;
-            *) echo "Please answer y or n." ;;
+            *) echo -e "Please answer y or n\n" ;;
         esac
     done
 else
     echo "Creating a new .bash_profile..."
     cp ~/Repository_Manager/.bash_profile ~/.bash_profile
-    echo ".bash_profile has been created."
+    echo ".bash_profile has been created"
 fi
 echo ""
