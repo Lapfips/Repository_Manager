@@ -40,13 +40,11 @@ else
     echo -e "${BOLD}\n$(cat ~/.ssh/id_ed25519.pub)${NC}"
     echo ""
     echo "${GREEN} \nPaste this key on your GitHub profile --> https://github.com/settings/keys ${NC}"
-    echo ""
 fi
 
 if [[ -f ".gitconfig" ]]; then
     echo -e "${BOLD}\nHere is the current content of your .gitconfig file:${NC}"
     echo -e "${BOLD}\n$(cat ~/.gitconfig)\n${NC}"
-    echo ""
     OVERWRITE_GITCONFIG_LOOP="false"
     while [[ $OVERWRITE_GITCONFIG_LOOP == "false" ]]; do
         read -p "${BLUE}Do you agree to overwrite your .gitconfig ? (y or n): ${NC}" CHOICE
@@ -78,7 +76,6 @@ fi
 if [[ -f ".bash_profile" ]]; then
     echo -e "${BOLD}\nHere is the current content of your .bash_profile file:${NC}"
     echo -e "${BOLD}\n$(cat ~/Repository_Manager/.bash_profile)\n${NC}"
-    echo ""
     OVERWRITE_BASH_PROFILE_LOOP="false"
     while [[ $OVERWRITE_BASH_PROFILE_LOOP == "false" ]]; do
         read -p "${BLUE}Do you agree to overwrite your .bash_profile ? (y or n) : ${NC}" CHOICE
