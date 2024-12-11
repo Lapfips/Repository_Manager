@@ -20,7 +20,6 @@ fi
 if [[ -d ".ssh" ]]; then
     HAS_SSH_KEY_LOOP="false"
     while [[ $HAS_SSH_KEY_LOOP == "false" ]]; do
-    echo ""
         read -p "${BLUE}You already have a ssh key do you want to overwrite it? (y or n): ${NC}" SSH_KEY
         case $SSH_KEY in
             [Nn]*) HAS_SSH_KEY_LOOP="true"
@@ -40,7 +39,7 @@ else
     ssh-keygen -t ed25519
     echo -e "${BOLD}\n$(cat ~/.ssh/id_ed25519.pub)${NC}"
     echo ""
-    echo "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
+    echo "${GREEN} \nPaste this key on your GitHub profile --> https://github.com/settings/keys ${NC}"
     echo ""
 fi
 
