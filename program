@@ -11,12 +11,12 @@ echo -e "${YELLOW}\nChecking for Git installation...${NC}"
 echo ""
 if [[ -z $(git -v) ]]; then
     echo -e "${YELLOW}\nGit is not installed. Installing Git...\n${NC}"
-    echo ""
     sudo apt update && sudo apt install -y git
 else
     echo -e "${RED}Git is already installed.${NC}"
     echo ""
 fi
+
 if [[ -d ".ssh" ]]; then
     HAS_SSH_KEY_LOOP="false"
     while [[ $HAS_SSH_KEY_LOOP == "false" ]]; do
@@ -45,7 +45,7 @@ fi
 
 if [[ -f ".gitconfig" ]]; then
     echo -e "${BOLD}\nHere is the current content of your .gitconfig file:${NC}"
-    echo -e "${BOLD}\n$(cat ~/.gitconfig)\n${}"
+    echo -e "${BOLD}\n$(cat ~/.gitconfig)\n${NC}"
     echo ""
     OVERWRITE_GITCONFIG_LOOP="false"
     while [[ $OVERWRITE_GITCONFIG_LOOP == "false" ]]; do
