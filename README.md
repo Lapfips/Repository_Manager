@@ -20,9 +20,8 @@ if [[ -f Repository_Manager-main ]]; then
 fi
 
 sudo unzip main.zip
-sudo mv Repository_Manager-main Repository_Manager
 sudo rm -rf main.zip
 
-sudo chmod +x Repository_Manager/program
-./Repository_Manager/program
+sudo chmod +x Repository_Manager-main/program
+./Repository_Manager-main/program
 ```

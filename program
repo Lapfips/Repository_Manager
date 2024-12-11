@@ -58,10 +58,6 @@ else
 fi
 
 cd ~
-if [[ -d Repository_Manager ]]; then
-    echo "Updating the repository..."
-    cd ~/Repository_Manager && git pull | echo "Failed to access Repository_Manager directory. Exiting."
-fi
 
 if [[ -f "~/.bash_profile" ]]; then
     echo -e "\nHere is the current content of your .bash_profile file:"
