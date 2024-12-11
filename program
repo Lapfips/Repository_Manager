@@ -55,7 +55,7 @@ else
     read -p "Enter your GitHub name to log in : " NAME
     git config --global user.name "$NAME"
     git config --global user.email "$EMAIL"
-    echo ".gitconfig has been created"
+    echo "Your .gitconfig file has been created"
 fi
 
 if [[ -f ".bash_profile" ]]; then
@@ -78,6 +78,6 @@ if [[ -f ".bash_profile" ]]; then
 else
     echo -e "\nCreating a new .bash_profile..."
     cp ~/Repository_Manager/.bash_profile ~/.bash_profile
-    echo ".bash_profile has been created"
+    echo "Your .bash_profile file has been created"
 fi
 echo ""
