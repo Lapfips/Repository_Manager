@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Checking for Git installation..."
-if ! dpkg -l | grep -q "git"; then
+if [[ -z $(git -v) ]]; then
   echo "Git is not installed. Installing Git..."
   sudo apt update && sudo apt install -y git
 else
@@ -11,7 +11,7 @@ fi
 if [[ -d "~/.ssh" ]]; then
     HAS_SSH_KEY_LOOP="false"
     while [[ $HAS_SSH_KEY_LOOP == "false" ]]; do
-        read -p "Ylready have a ssh key do you want to overwrite it? (y or n): " SSH_KEY
+        read -p "You already have a ssh key do you want to overwrite it? (y or n): " SSH_KEY
         case $SSH_KEY in
             [Yy]*) HAS_SSH_KEY_LOOP="true"
             break ;;

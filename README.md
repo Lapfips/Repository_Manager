@@ -9,7 +9,7 @@ fi
 
 echo "Checking for 7zip installation..."
 if ! dpkg -l | grep -q "7zip"; then
-    echo "7zip is not installed. Installing Git..."
+    echo "7zip is not installed. Installing 7zip..."
     sudo apt update && sudo apt install -y 7zip
 else
     echo "7zip is already installed."
@@ -24,5 +24,5 @@ sudo mv Repository_Manager-main Repository_Manager
 sudo rm -rf main.zip
 
 sudo chmod +x Repository_Manager/program
-sudo ./Repository_Manager/program
+./Repository_Manager/program
 ```
