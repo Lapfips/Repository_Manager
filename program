@@ -2,9 +2,8 @@
 
 echo -e "\nChecking for Git installation..."
 if [[ -z $(git -v) ]]; then
-    echo -e "Git is not installed. Installing Git...\n"
+    echo -e "\nGit is not installed. Installing Git...\n"
     sudo apt update && sudo apt install -y git
-    echo ""
 else
     echo -e "Git is already installed.\n"
 fi
@@ -18,7 +17,7 @@ if [[ -d ".ssh" ]]; then
             [Yy]*) HAS_SSH_KEY_LOOP="true"
             break ;;
             [Nn]*) ssh-keygen -t ed25519
-            echo -e "\n$(cat ~/.ssh/id_ed25519.pub)\nPaste this key on your GitHub profile --> https://github.com/settings/keys\n"
+            echo -e "\n$(cat ~/.ssh/id_ed25519.pub)\nPaste this key on your GitHub profile --> https://github.com/settings/keys"
             HAS_SSH_KEY_LOOP="true"
             break ;;
             *) echo -e "Please answer y or n\n" ;;
@@ -27,7 +26,7 @@ if [[ -d ".ssh" ]]; then
 else
     echo -e "\nCreating a ssh key..."
     ssh-keygen -t ed25519
-    echo -e "\n$(cat ~/.ssh/id_ed25519.pub)\n\nPaste this key on your GitHub profile --> https://github.com/settings/keys\n"
+    echo -e "\n$(cat ~/.ssh/id_ed25519.pub)\n\nPaste this key on your GitHub profile --> https://github.com/settings/keys"
 fi
 
 if [[ -f ".gitconfig" ]]; then

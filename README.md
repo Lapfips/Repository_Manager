@@ -7,7 +7,7 @@ if [[ ! -f "main.zip" ]]; then
     sudo wget https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip
 fi
 
-echo -e "\nChecking for 7zip installation..."
+echo "Checking for 7zip installation..."
 if ! dpkg -l | grep -q "7zip"; then
     echo -e "7zip is not installed. Installing 7zip...\n"
     sudo apt update && sudo apt install -y 7zip
