@@ -19,7 +19,6 @@ if ! dpkg -l | grep -q "7zip"; then
     echo ""
 else
     echo -e "${RED}7zip is already installed.\n${NC}"
-    echo ""
 fi
 if [[ -f "Repository_Manager-main" ]]; then
     sudo rm -rf Repository_Manager-main
