@@ -1,7 +1,9 @@
 # Repository_Manager
 
 ```bash
-if [[! -f "main.zip"]]; then
+#!/bin/bash
+
+if [[ ! -f "main.zip" ]]; then
     sudo wget https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip
 fi
 
@@ -13,7 +15,7 @@ else
     echo "7zip is already installed."
 fi
 
-if [[-f Repository_Manager-main]]; then
+if [[ -f Repository_Manager-main ]]; then
     sudo rm -rf Repository_Manager-main
 fi
 

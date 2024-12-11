@@ -29,15 +29,7 @@ git config --global user.name "$NAME"
 git config --global user.email "$EMAIL"
 
 cd ~
-<<<<<<< HEAD
 if [[ -d Repository_Manager ]]; then
-=======
-if [[ ! -d Repository_Manager ]]; then
-    echo "Cloning the Repository_Manager repository..."
-    git clone git@github.com:Lapfips/Repository_Manager.git | { echo "Failed to clone repository. Exiting."; exit 1; }
-
-else
->>>>>>> 6d1ecb16c2bba19d76c2c0b80de02fee5ed72c88
     echo "Updating the repository..."
     cd ~/Repository_Manager && git pull | echo "Failed to access Repository_Manager directory. Exiting."
 fi
