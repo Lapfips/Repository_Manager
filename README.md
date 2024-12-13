@@ -14,14 +14,13 @@ echo -e "${YELLOW}Checking for 7zip installation...${NC}"
 echo ""
 if ! dpkg -l | grep -q "7zip"; then
     echo -e "${YELLOW}7zip is not installed. Installing 7zip...\n${NC}"
-    echo ""
     sudo apt update && sudo apt install -y 7zip
     echo ""
 else
     echo -e "${RED}7zip is already installed.\n${NC}"
 fi
-if [[ -f "Repository_Manager-main" ]]; then
-    sudo rm -rf Repository_Manager-main
+if [[ -f "Repository_Manager-main" | -f "Repository_Manager" ]]; then
+    sudo rm -rf Repository_Manager-main Repository_Manager
 fi
 sudo unzip main.zip
 sudo mv Repository_Manager-main Repository_Manager

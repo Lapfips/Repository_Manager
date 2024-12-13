@@ -39,7 +39,7 @@ else
     ssh-keygen -t ed25519
     echo -e "${BOLD}\n$(cat ~/.ssh/id_ed25519.pub)${NC}"
     echo ""
-    echo "${GREEN} \nPaste this key on your GitHub profile --> https://github.com/settings/keys ${NC}"
+    echo "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
 fi
 
 if [[ -f ".gitconfig" ]]; then
