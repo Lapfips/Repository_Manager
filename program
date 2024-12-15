@@ -1,28 +1,37 @@
 #!/bin/bash
 
+# Color definitions
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
-NC='\033[0m'
+NC='\033[0m'  # No Color
 BOLD='\033[1m'
 
+# Check for Git installation
 echo -e "${YELLOW}\nChecking for Git installation...${NC}"
 if ! command -v git &> /dev/null; then
     echo -e "${YELLOW}\nGit is not installed. Installing Git...\n${NC}"
-    sudo apt update && sudo apt install -y git
+    sudo apt update && sudo apt install -y git || {
+        echo -e "${RED}Failed to install Git. Exiting.${NC}"
+        exit 1
+    }
+    echo -e "${GREEN}Git successfully installed.${NC}"
 else
-    echo -e "${GREEN}Git is already installed.\n${NC}"
+    echo -e "${GREEN}Git is already installed.${NC}"
 fi
 
+# Handle SSH key
+echo -e "${YELLOW}\nChecking for SSH key...${NC}"
 if [[ -d "$HOME/.ssh" ]]; then
     while true; do
-        read -p "${BLUE}An SSH key already exists. Do you want to overwrite it? (y or n): ${NC}" SSH_KEY
+        read -p "${BLUE}An SSH key already exists. Do you want to overwrite it? (y or n): ${NC} " SSH_KEY
         case $SSH_KEY in
             [Yy]*)
                 ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
                 echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
                 echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
+                echo -e "${GREEN}New SSH key successfully created.${NC}"
                 break ;;
             [Nn]*)
                 echo -e "${GREEN}Keeping the existing SSH key.${NC}"
@@ -36,20 +45,23 @@ else
     ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
     echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
     echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
+    echo -e "${GREEN}New SSH key successfully created.${NC}"
 fi
 
+# Handle .gitconfig
+echo -e "${YELLOW}\nChecking for .gitconfig file...${NC}"
 if [[ -f "$HOME/.gitconfig" ]]; then
     echo -e "${BOLD}\nCurrent content of your .gitconfig file:${NC}"
     cat "$HOME/.gitconfig"
     while true; do
-        read -p "${BLUE}Do you want to overwrite your .gitconfig? (y or n): ${NC}" CHOICE
+        read -p "${BLUE}Do you want to overwrite your .gitconfig? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
-                read -p "${BOLD}Enter your GitHub email: ${NC}" EMAIL
-                read -p "${BOLD}Enter your GitHub name: ${NC}" NAME
+                read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
+                read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
                 git config --global user.name "$NAME"
                 git config --global user.email "$EMAIL"
-                echo -e "${GREEN}.gitconfig has been updated.${NC}"
+                echo -e "${GREEN}.gitconfig has been updated successfully.${NC}"
                 break ;;
             [Nn]*)
                 echo -e "${GREEN}No changes were made to your .gitconfig file.${NC}"
@@ -60,22 +72,24 @@ if [[ -f "$HOME/.gitconfig" ]]; then
     done
 else
     echo -e "${YELLOW}\nCreating a new .gitconfig file...${NC}"
-    read -p "${BOLD}Enter your GitHub email: ${NC}" EMAIL
-    read -p "${BOLD}Enter your GitHub name: ${NC}" NAME
+    read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
+    read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
     git config --global user.name "$NAME"
     git config --global user.email "$EMAIL"
-    echo -e "${GREEN}.gitconfig file created.${NC}"
+    echo -e "${GREEN}.gitconfig file created successfully.${NC}"
 fi
 
+# Handle .bash_profile
+echo -e "${YELLOW}\nChecking for .bash_profile file...${NC}"
 if [[ -f "$HOME/.bash_profile" ]]; then
     echo -e "${BOLD}\nCurrent content of your .bash_profile file:${NC}"
     cat "$HOME/.bash_profile"
     while true; do
-        read -p "${BLUE}Do you want to overwrite your .bash_profile? (y or n): ${NC}" CHOICE
+        read -p "${BLUE}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
                 cp ~/Repository_Manager/.bash_profile "$HOME/.bash_profile"
-                echo -e "${GREEN}.bash_profile has been updated.${NC}"
+                echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
                 break ;;
             [Nn]*)
                 echo -e "${GREEN}No changes were made to your .bash_profile file.${NC}"
@@ -87,7 +101,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
 else
     echo -e "${YELLOW}\nCreating a new .bash_profile...${NC}"
     cp ~/Repository_Manager/.bash_profile "$HOME/.bash_profile"
-    echo -e "${GREEN}.bash_profile file created.${NC}"
+    echo -e "${GREEN}.bash_profile file created successfully.${NC}"
 fi
 
-echo -e "${GREEN}Script execution completed.${NC}"
+echo -e "${GREEN}Script execution completed successfully.${NC}"

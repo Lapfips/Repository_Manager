@@ -10,7 +10,7 @@ NC='\033[0m'
 
 if [[ ! -f "main.zip" ]]; then
     echo -e "${YELLOW}\nDownloading the repository...${NC}"
-    wget -q https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip || {
+    wget -q https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip && echo -e "${GREEN}The repository has been successfully downloaded${NC}" || {
         echo -e "${RED}Failed to download main.zip. Exiting.${NC}"
         exit 1
     }
@@ -33,7 +33,7 @@ if [[ -d "Repository_Manager-main" || -d "Repository_Manager" ]]; then
 fi
 
 echo -e "${YELLOW}\nExtracting the repository...${NC}"
-unzip -q main.zip || {
+unzip -q main.zip && echo -e "${GREEN}main.zip has been successfully extracted${NC}" || {
     echo -e "${RED}Failed to extract main.zip. Exiting.${NC}"
     exit 1
 }
@@ -43,8 +43,8 @@ chmod -R +x Repository_Manager
 
 rm -f main.zip
 
-echo -e "${YELLOW}\naunching the program...${NC}"
-cd Repository_Manager || {
+echo -e "${YELLOW}\nLaunching the program...${NC}"
+cd Repository_Manager && echo -e "${GREEN}Program launched${NC}" || {
     echo -e "${RED}Failed to navigate to Repository_Manager. Exiting.${NC}"
     exit 1
 }
