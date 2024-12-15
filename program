@@ -48,7 +48,7 @@ fi
 
 echo -e "${YELLOW}\nChecking for .gitconfig file...${NC}"
 if [[ -f "$HOME/.gitconfig" ]]; then
-    echo -e "${BOLD}\nCurrent content of your .gitconfig file:${NC}"
+    echo -e "${BOLD}Current content of your .gitconfig file:${NC}"
     cat "$HOME/.gitconfig"
     while true; do
         read -p "${BLUE}Do you want to overwrite your .gitconfig? (y or n): ${NC} " CHOICE
@@ -68,7 +68,7 @@ if [[ -f "$HOME/.gitconfig" ]]; then
         esac
     done
 else
-    echo -e "${YELLOW}\nCreating a new .gitconfig file...${NC}"
+    echo -e "${YELLOW}Creating a new .gitconfig file...${NC}"
     read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
     read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
     git config --global user.name "$NAME"
@@ -78,7 +78,7 @@ fi
 
 echo -e "${YELLOW}\nChecking for .bash_profile file...${NC}"
 if [[ -f "$HOME/.bash_profile" ]]; then
-    echo -e "${BOLD}\nCurrent content of your .bash_profile file:${NC}"
+    echo -e "${BOLD}Current content of your .bash_profile file:${NC}"
     cat "$HOME/.bash_profile"
     while true; do
         read -p "${BLUE}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
@@ -95,7 +95,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         esac
     done
 else
-    echo -e "${YELLOW}\nCreating a new .bash_profile...${NC}"
+    echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
     cp ~/Repository_Manager/.bash_profile "$HOME/.bash_profile"
     echo -e "${GREEN}.bash_profile file created successfully.${NC}"
 fi
