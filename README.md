@@ -9,16 +9,16 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 if [[ ! -f "main.zip" ]]; then
-    echo -e "${YELLOW}Downloading the repository...${NC}"
+    echo -e "${YELLOW}\nDownloading the repository...${NC}"
     wget -q https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip || {
         echo -e "${RED}Failed to download main.zip. Exiting.${NC}"
         exit 1
     }
 fi
 
-echo -e "${YELLOW}Checking for p7zip installation...${NC}"
+echo -e "${YELLOW}\nChecking for p7zip installation...${NC}"
 if ! dpkg -l | grep -qw "p7zip-full"; then
-    echo -e "${YELLOW}p7zip is not installed. Installing p7zip-full...${NC}"
+    echo -e "${YELLOW}\np7zip is not installed. Installing p7zip-full...${NC}"
     sudo apt update && sudo apt install -y p7zip-full || {
         echo -e "${RED}Failed to install p7zip-full. Exiting.${NC}"
         exit 1
@@ -28,11 +28,11 @@ else
 fi
 
 if [[ -d "Repository_Manager-main" || -d "Repository_Manager" ]]; then
-    echo -e "${YELLOW}Removing old directories...${NC}"
+    echo -e "${YELLOW}\nRemoving old directories...${NC}"
     rm -rf Repository_Manager-main Repository_Manager
 fi
 
-echo -e "${YELLOW}Extracting the repository...${NC}"
+echo -e "${YELLOW}\nExtracting the repository...${NC}"
 unzip -q main.zip || {
     echo -e "${RED}Failed to extract main.zip. Exiting.${NC}"
     exit 1
@@ -43,11 +43,11 @@ chmod -R +x Repository_Manager
 
 rm -f main.zip
 
-echo -e "${YELLOW}Launching the program...${NC}"
+echo -e "${YELLOW}\naunching the program...${NC}"
 cd Repository_Manager || {
     echo -e "${RED}Failed to navigate to Repository_Manager. Exiting.${NC}"
     exit 1
 }
-./program || echo -e "${RED}Failed to execute the program.${NC}"
+./program || echo -e "${RED}\nFailed to execute the program.${NC}"
 
 ```
