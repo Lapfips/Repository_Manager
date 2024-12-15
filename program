@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Color definitions
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'  # No Color
-BOLD='\033[1m'
+# Color definitions using tput
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4)
+NC=$(tput sgr0)  # No Color
+BOLD=$(tput bold)
 
-# Check for Git installation
 echo -e "${YELLOW}\nChecking for Git installation...${NC}"
 if ! command -v git &> /dev/null; then
     echo -e "${YELLOW}\nGit is not installed. Installing Git...\n${NC}"
@@ -21,7 +20,6 @@ else
     echo -e "${GREEN}Git is already installed.${NC}"
 fi
 
-# Handle SSH key
 echo -e "${YELLOW}\nChecking for SSH key...${NC}"
 if [[ -d "$HOME/.ssh" ]]; then
     while true; do
@@ -48,7 +46,6 @@ else
     echo -e "${GREEN}New SSH key successfully created.${NC}"
 fi
 
-# Handle .gitconfig
 echo -e "${YELLOW}\nChecking for .gitconfig file...${NC}"
 if [[ -f "$HOME/.gitconfig" ]]; then
     echo -e "${BOLD}\nCurrent content of your .gitconfig file:${NC}"
@@ -79,7 +76,6 @@ else
     echo -e "${GREEN}.gitconfig file created successfully.${NC}"
 fi
 
-# Handle .bash_profile
 echo -e "${YELLOW}\nChecking for .bash_profile file...${NC}"
 if [[ -f "$HOME/.bash_profile" ]]; then
     echo -e "${BOLD}\nCurrent content of your .bash_profile file:${NC}"
