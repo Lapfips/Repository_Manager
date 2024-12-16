@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Colors
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -7,6 +8,7 @@ BLUE=$(tput setaf 4)
 NC=$(tput sgr0)
 BOLD=$(tput bold)
 
+# Ensuring Git installation
 echo -e "${YELLOW}\nChecking for Git installation...${NC}"
 if ! command -v git &> /dev/null; then
     echo -e "${YELLOW}Git is not installed. Installing Git...\n${NC}"
@@ -19,6 +21,7 @@ else
     echo -e "${GREEN}Git is already installed.${NC}"
 fi
 
+# SSH Key generation accorded to the user choice
 echo -e "${YELLOW}\nChecking for SSH key...${NC}"
 if [[ -d "$HOME/.ssh" ]]; then
     while true; do
@@ -45,6 +48,7 @@ else
     echo -e "${GREEN}New SSH key successfully created.${NC}"
 fi
 
+# Configuring .gitconfig accorded to the user choice
 echo -e "${YELLOW}\nChecking for .gitconfig file...${NC}"
 if [[ -f "$HOME/.gitconfig" ]]; then
     echo -e "${BOLD}Current content of your .gitconfig file:${NC}"
@@ -75,6 +79,7 @@ else
     echo -e "${GREEN}.gitconfig file created successfully.${NC}"
 fi
 
+# Configuring and executing .bash_profile accorded to the user choice
 echo -e "${YELLOW}\nChecking for .bash_profile file...${NC}"
 if [[ -f "$HOME/.bash_profile" ]]; then
     echo -e "${BOLD}Current content of your .bash_profile file:${NC}"
