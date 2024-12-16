@@ -88,7 +88,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
                 . $HOME/.bash_profile
                 break ;;
             [Nn]*)
-                echo -e "${GREEN}No changes were made to your .bash_profile file.\n${NC}"
+                echo -e "${GREEN}No changes were made to your .bash_profile file.${NC}"
                 . $HOME/.bash_profile
                 break ;;
             *)
