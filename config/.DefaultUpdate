@@ -1,0 +1,9 @@
+#!/bin/bash
+
+github="git@github.com:"
+repositories=()
+
+for repo in "${repositories_optional[@]}"; do
+    echo "Updating $repo"
+    ./.UpdateRepo "$repo" "$github" "$1"
+done
