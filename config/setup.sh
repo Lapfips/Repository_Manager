@@ -39,7 +39,7 @@ if [[ -d "$HOME/.ssh" ]]; then
     done
 else
     echo -e "${YELLOW}Creating a new SSH key...${NC}"
-    ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
+    ssh-keygen -t ed25519 "$HOME/.ssh/id_ed25519"
     echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
     echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
     echo -e "${GREEN}New SSH key successfully created.${NC}"
