@@ -25,7 +25,7 @@ if [[ -d "$HOME/.ssh" ]]; then
         read -p "${BLUE}An SSH key already exists. Do you want to overwrite it? (y or n): ${NC} " SSH_KEY
         case $SSH_KEY in
             [Yy]*)
-                ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
+                ssh-keygen -t ed25519 "$HOME/.ssh/id_ed25519"
                 echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
                 echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
                 echo -e "${GREEN}New SSH key successfully created.${NC}"
@@ -95,7 +95,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
     done
 else
     echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
-    cp ~/Repository_Manager/.bash_profile "$HOME/.bash_profile"
+    cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
     echo -e "${GREEN}.bash_profile file created successfully.${NC}"
 fi
 
