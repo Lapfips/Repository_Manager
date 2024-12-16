@@ -9,7 +9,7 @@ BOLD=$(tput bold)
 
 echo -e "${YELLOW}\nChecking for Git installation...${NC}"
 if ! command -v git &> /dev/null; then
-    echo -e "${YELLOW}\nGit is not installed. Installing Git...\n${NC}"
+    echo -e "${YELLOW}Git is not installed. Installing Git...\n${NC}"
     sudo apt update && sudo apt install -y git || {
         echo -e "${RED}Failed to install Git. Exiting.${NC}"
         exit 1
