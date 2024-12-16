@@ -83,7 +83,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         read -p "${BLUE}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
-                cp ~/Repository_Manager/.bash_profile "$HOME/.bash_profile"
+                cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
                 echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
                 break ;;
             [Nn]*)
