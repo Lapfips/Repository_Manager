@@ -2,7 +2,7 @@
 
 ## Presentation
 
-Hi, my name is Ethan, I'm a french second year student and I created this repository to automatis my github repository managing. This script need to be executed on your pc without any conditions, it will automaticly configure an environnement for you github repositories.
+Hi, my name is Ethan, I'm a french second year student and I created this repository to automate my github repository management. This script needs to be executed on your pc without any conditions, it will automatically configure an environnement for you github repositories.
 
 ## Configuration
 
