@@ -38,7 +38,7 @@ if [[ -d "$HOME/.ssh" ]]; then
         esac
     done
 else
-    echo -e "${YELLOW}\nCreating a new SSH key...${NC}"
+    echo -e "${YELLOW}Creating a new SSH key...${NC}"
     ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N ""
     echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
     echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
