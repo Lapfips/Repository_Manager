@@ -99,4 +99,4 @@ else
     echo -e "${GREEN}.bash_profile file created successfully.${NC}"
 fi
 
-echo -e "${GREEN}Script execution completed successfully.${NC}"
+echo -e "${GREEN}\nSetup execution completed successfully.${NC}"
