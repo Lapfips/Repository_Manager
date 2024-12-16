@@ -84,11 +84,11 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         case $CHOICE in
             [Yy]*)
                 cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
-                echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
+                echo -e "${GREEN}.bash_profile has been updated successfully.\n${NC}"
                 . $HOME/.bash_profile
                 break ;;
             [Nn]*)
-                echo -e "${GREEN}No changes were made to your .bash_profile file.${NC}"
+                echo -e "${GREEN}No changes were made to your .bash_profile file.\n${NC}"
                 . $HOME/.bash_profile
                 break ;;
             *)
@@ -98,7 +98,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
 else
     echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
     cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
-    echo -e "${GREEN}.bash_profile file created successfully.${NC}"
+    echo -e "${GREEN}.bash_profile file created successfully.\n${NC}"
     . $HOME/.bash_profile
 fi
 
