@@ -22,10 +22,11 @@ cd $HOME
 # Download the main repository
 if [[ ! -f "main.zip" ]]; then
     echo -e "${YELLOW}\nDownloading the repository...${NC}"
-    wget -q https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip && echo -e "${GREEN}The repository has been successfully downloaded${NC}" || {
+    wget -q https://github.com/Lapfips/Repository_Manager/archive/refs/heads/main.zip || {
         echo -e "${RED}Failed to download main.zip. Exiting.${NC}"
         exit 1
     }
+    echo -e "${GREEN}The repository has been successfully downloaded${NC}"
 fi
 
 # Ensuring 7zip installation
