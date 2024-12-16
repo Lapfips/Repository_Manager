@@ -43,11 +43,11 @@ chmod -R +x Repository_Manager
 
 rm -f main.zip
 
-echo -e "${YELLOW}\nLaunching the program...${NC}"
+echo -e "${YELLOW}\nLaunching the setup...${NC}"
 cd Repository_Manager && echo -e "${GREEN}Program launched${NC}" || {
     echo -e "${RED}Failed to navigate to Repository_Manager. Exiting.${NC}"
     exit 1
 }
-./program || echo -e "${RED}\nFailed to execute the program.${NC}"
+./config/setup.sh || echo -e "${RED}\nFailed to execute the setup.${NC}"
 
 ```
