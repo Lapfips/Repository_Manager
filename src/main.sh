@@ -12,10 +12,10 @@ case $FUNC in
     -upt) FUNC="Update" ;;
     -cat) FUNC="Category" ;;
     -repo) FUNC="Repository" ;;
-    -help) echo -e "\nUsage prog <option>\n\n
-        Options:\n\n
-        -upt  -> Update a repostory or a category of repostitory\n
-        -cat  -> Add or remove a category to your manager\n
+    -help) echo -e "\nUsage prog <option>\n
+        Options:\n
+        -upt  -> Update a repostory or a category of repostitory
+        -cat  -> Add or remove a category to your manager
         -repo -> Add or remove a repository to a choosed category\n"
         exit 0
         ;;
