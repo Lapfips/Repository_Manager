@@ -2,7 +2,7 @@
 
 if [[ -z "$1" ]]; then
     echo
-    read -p "Which option do you want to call ? : " OPT
+    read -p "Which option do you want to call about your repository(ies) ? : " OPT
     echo
 else
     OPT="$1" 
@@ -14,8 +14,8 @@ case $OPT in
     -list) FUNC="ListRepositories" ;;
     -help) echo -e "\nUsage prog -repo <option> <category_name> <repository_name>\n\n
         Options:\n\n
-        -add  -> Add a repository to to a certain category\n
-        -rm   -> Remove a repository to to a certain category\n
+        -add  -> Add a repository to a certain category\n
+        -rm   -> Remove a repository to a certain category\n
         -list -> List all repositories"
         exit 0
         ;;

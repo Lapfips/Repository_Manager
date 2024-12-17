@@ -13,7 +13,7 @@ REPO_PATH="GitRepositories"
 
 if [[ -z "$1" ]]; then
     echo
-    read -p "Which type of update do you want to do? : " CHOICE
+    read -p "Which type of update do you want to do ? : " CHOICE
 else
     CHOICE="$1"
 fi

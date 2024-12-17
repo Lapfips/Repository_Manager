@@ -2,7 +2,7 @@
 
 if [[ -z "$1" ]]; then
     echo
-    read -p "Which option do you want to call ? : " OPT
+    read -p "Which option do you want to call about your category(ies) ? : " OPT
     echo
 else
     OPT="$1" 

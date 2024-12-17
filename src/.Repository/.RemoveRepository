@@ -27,3 +27,8 @@ if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"; t
 else
     echo -e "\nRepository '$NAME' does not exist in $CAT."
 fi
+
+read -p "Do you want to remove this repository from your system -> $NAME ? (yes/no) " USER_CHOICE
+if [[ "^$USER_CHOICE" == "yes" ]]; then
+    rm -rf "GitRepositories/$NAME"
+fi

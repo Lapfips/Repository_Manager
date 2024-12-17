@@ -4,9 +4,9 @@ if [[ "$1" = "-help" ]]; then
     echo -e "\nUsage prog -cat -add <category_name> <repository_name>"
     exit 0
 else
-    if [[ "$#" -lt 1 ]]; then
+    if [[ -z "$1" ]]; then
         echo -e "\nPlease enter the following information(s): \n"
-        [ -z "$1" ] && read -p "Enter the category name: " CAT
+        read -p "Enter the category name: " CAT
     else
         CAT="$1"
         echo
