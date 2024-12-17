@@ -24,6 +24,10 @@ if [[ -z "$2" ]]; then
     read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE
 else
     REPOSITORY_NAME="$2"
+    echo
+    bash Repository_Manager/src/main.sh -repo -add "$CAT" "$REPOSITORY_NAME"
+    echo
+    read -p "Do you want to add another repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE 
 fi
 
 while [[ "$USER_CHOICE" != "no" ]]; do
