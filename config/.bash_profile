@@ -17,3 +17,6 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+alias prog="bash ~/RepositoryManager/src/main.sh"
+alias cmd="clear && cmd"
