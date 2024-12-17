@@ -14,8 +14,6 @@ if [[ -z "$1" ]]; then
     done
 else
     for repo in "${repositories[@]}"; do
-        echo $(basename $repo)
-        echo $1
         if [[ $(basename $repo) == "$1" ]]; then
             auto="$2"
             echo "Updating $repo"
