@@ -9,6 +9,7 @@ else
         [ -z "$1" ] && read -p "Enter the category name: " CAT
     else
         CAT="$1"
+        echo
     fi
 fi
 
@@ -24,7 +25,7 @@ read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no)
 while [[ $USER_CHOICE != "no" ]]; do
     echo
     read -p "Enter the repository name you want to add : " REPOSITORY_NAME
-    bash prog -upt -repo -add "$CAT" "$REPOSITORY_NAME"
+    bash Repository_Manager/src/main.sh -upt -repo -add "$CAT" "$REPOSITORY_NAME"
     echo
     read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE 
 done
