@@ -23,7 +23,7 @@ case $OPT in
 esac
 
 if [[ -f "$FUNC" ]]; then
-    bash "RepositoryManager/Category/$func" "$2" "$3" "$4"
+    bash "Repository_Manager/Category/$func" "$2" "$3" "$4"
 else
     echo -e "\nFunction script $FUNC not found."
     exit 1

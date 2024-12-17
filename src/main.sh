@@ -12,7 +12,7 @@ case $FUNC in
     -upt) FUNC="Update" ;;
     -cat) FUNC="Category" ;;
     -repo) FUNC="Repository" ;;
-    -help) echo -e "Usage prog <option>\n\n
+    -help) echo -e "\nUsage prog <option>\n\n
         Options:\n\n
         -upt  -> Update a repostory or a category of repostitory\n
         -cat  -> Add or remove a category to your manager\n
@@ -25,7 +25,7 @@ case $FUNC in
 esac
 
 if [[ -f "$FUNC" ]]; then
-    bash "RepositoryManager/$func" "$2" "$3" "$4" "$5"
+    bash "Repository_Manager/$func" "$2" "$3" "$4" "$5"
 else
     echo -e "\nFunction script $FUNC not found."
     exit 1

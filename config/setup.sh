@@ -89,7 +89,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         case $CHOICE in
             [Yy]*)
                 cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
-                echo -e "${GREEN}.bash_profile has been updated successfully.\n${NC}"
+                echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
                 . $HOME/.bash_profile
                 break ;;
             [Nn]*)
