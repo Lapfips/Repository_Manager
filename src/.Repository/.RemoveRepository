@@ -22,7 +22,7 @@ if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then
 fi
 
 if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"; then
-    sed -i "/repositories=(/ s# $NAME##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"
+    sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"
     echo -e "\nRepository '$NAME' removed from $CAT."
 else
     echo -e "\nRepository '$NAME' does not exist in $CAT."
