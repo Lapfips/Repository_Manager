@@ -11,7 +11,7 @@ fi
 case $OPT in
     -add) FUNC="AddRepository" ;;
     -rm) FUNC="RemoveRepository" ;;
-    -help) echo -e "Usage prog -repo <option> <category_name> <repository_name>\n\n
+    -help) echo -e "\nUsage prog -repo <option> <category_name> <repository_name>\n\n
         Options:\n\n
         -add  -> Add a repository to to a certain category\n
         -rm   -> Remove a repository to to a certain category\n"

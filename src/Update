@@ -16,7 +16,7 @@ fi
 case $CHOICE in
     -a) FUNC=All ;;
     --all) FUNC=All ;;
-    -help) echo "Usage: prog -upt <option>\n\n
+    -help) echo "\nUsage: prog -upt <option>\n\n
         Options: \n\n
         -a    -> Update all your repositories\n
         --all -> Update all your repositories"

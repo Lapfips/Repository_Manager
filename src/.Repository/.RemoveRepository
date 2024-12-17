@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$1" = "-help" ]]; then
-    echo -e "Usage porg -repo -rm <category_name> <repository_name>"
+    echo -e "\nUsage porg -repo -rm <category_name> <repository_name>"
 else
     if [[ "$#" -lt 2 ]]; then
         echo -e "\nPlease enter the following information(s): \n"
