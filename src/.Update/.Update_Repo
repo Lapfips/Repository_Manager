@@ -2,8 +2,8 @@
 
 cd GitRepositories/
 
-repo_path=$1
-repo_url=$2
+repo_path="$1"
+repo_url="$2"
 repo_name=$(basename "$repo_path")
 
 if [[ ! -d $repo_name ]]; then
@@ -16,8 +16,8 @@ git pull
 
 if [[ -n $(git status --porcelain) ]]; then
     git add .
-    if [[ $3 != "" ]]; then
-        if [[ $3 == "auto" ]]; then
+    if [[ "$3" != "" ]]; then
+        if [[ "$3" == "auto" ]]; then
             MESS="Automatic commit message"
         else
             MESS="$3"

@@ -6,7 +6,7 @@ if [[ -z "$1" ]]; then
     echo
     read -p "Which type of update do you want to do ? :  " CHOICE
 else
-    CHOICE=$1
+    CHOICE="$1"
 fi
 
 if [[ ! -d $path ]]; then
@@ -33,7 +33,7 @@ esac
 
 if [[ -f "Repository_Manager/.Update_Repositories/.Update_$FUNC" ]]; then
     echo
-    bash "Repository_Manager/.Update_Repositories/.Update_$FUNC" $2 $3
+    bash "Repository_Manager/.Update_Repositories/.Update_$FUNC" "$2" "$3"
 else
     echo -e "\nFunction script Repository_Manager/.Update_Repositories/.Update_$FUNC not found."
     exit 1

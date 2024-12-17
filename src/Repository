@@ -5,7 +5,7 @@ if [[ -z "$1" ]]; then
     read -p "Which option do you want to call ? : " OPT
     echo
 else
-    OPT=$1 
+    OPT="$1" 
 fi
 
 case $OPT in
@@ -23,7 +23,7 @@ case $OPT in
 esac
 
 if [[ -f "$FUNC" ]]; then
-    bash "RepositoryManager/Repository/$func" $2 $3 $4
+    bash "RepositoryManager/Repository/$func" "$2" "$3" "$4"
 else
     echo -e "\nFunction script $FUNC not found."
     exit 1
