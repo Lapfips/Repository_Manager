@@ -65,6 +65,6 @@ cd Repository_Manager && echo -e "${GREEN}Program launched${NC}" || {
     echo -e "${RED}Failed to navigate to Repository_Manager. Exiting.${NC}"
     exit 1
 }
-source ./config/setup.sh && . .bash_profile || echo -e "${RED}\nFailed to execute the setup.${NC}"
+source ./config/setup.sh || echo -e "${RED}\nFailed to execute the setup.${NC}"
 
 ```
