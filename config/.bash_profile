@@ -18,6 +18,6 @@ else
     start_agent;
 fi
 
-alias prog="cd ~ && bash RepositoryManager/src/main.sh"
+alias prog="cd ~ && bash Repository_Manager/src/main.sh"
 alias cmd="clear && cmd"
 alias back="cd -"
