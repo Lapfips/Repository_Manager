@@ -10,18 +10,19 @@ else
                 [ -z "$1" ] && read -p "Enter the repository category: " CAT
             fi
         [ -z "$2" ] && read -p "Enter the repository name : " NAME
-        read -p "Is this repository from an organization ? (yes/no) : " USER_CHOICE
-        if [[ $USER_CHOICE == "yes" ]]; then
-            read -p "Enter the organization name : " ORGANIZATION_NAME
-            NAME="$ORGANIZATION_NAME/$CAT"
-        else
-            read -p "Enter your pseudo : " PSEUDO_NAME
-            NAME="$PSEUDO_NAME/$CAT"
-        fi
     else
         CAT="$1"
         NAME="$2"
     fi
+fi
+
+read -p "Is this repository from an organization -> $NAME ? (yes/no) : " USER_CHOICE
+if [[ $USER_CHOICE == "yes" ]]; then
+    read -p "Enter the organization name : " ORGANIZATION_NAME
+    NAME="$ORGANIZATION_NAME/$CAT"
+else
+    read -p "Enter your pseudo : " PSEUDO_NAME
+    NAME="$PSEUDO_NAME/$CAT"
 fi
 
 if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then

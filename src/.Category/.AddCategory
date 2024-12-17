@@ -27,5 +27,5 @@ while [[ "$USER_CHOICE" != "no" ]]; do
     read -p "Enter the repository name you want to add : " REPOSITORY_NAME
     bash Repository_Manager/src/main.sh -repo -add "$CAT" "$REPOSITORY_NAME"
     echo
-    read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE 
+    read -p "Do you want to add another repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE 
 done
