@@ -11,11 +11,11 @@ else
     fi
 fi
 
-if [[ -f "Repository_Mangager/.Update_Repositories/.Update_$CAT" ]]; then
+if [[ -f "Repository_Mangager/src/.Update_Repositories/.Update_$CAT" ]]; then
     echo -e "\nError: The file for category '$CAT' already exist."
     exit 1
 else
-    cp Repository_Mangager/config/.Default_Update "Repository_Mangager/.Update_Repositories/.Update_$CAT"
+    cp Repository_Mangager/config/.Default_Update "Repository_Mangager/src/.Update_Repositories/.Update_$CAT"
 fi
 
 read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE

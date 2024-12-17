@@ -22,7 +22,7 @@ case $CHOICE in
         --all -> Update all your repositories"
         exit 0
         ;;
-    *) if [[ -f "Repository_Manager/.Update_Repositories/.Update_$CHOICE" ]]; then
+    *) if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CHOICE" ]]; then
         FUNC="$CHOICE" ;;
         else
             echo -e "\nInvalid parameter. Try again"
@@ -31,10 +31,10 @@ case $CHOICE in
         fi
 esac
 
-if [[ -f "Repository_Manager/.Update_Repositories/.Update_$FUNC" ]]; then
+if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" ]]; then
     echo
-    bash "Repository_Manager/.Update_Repositories/.Update_$FUNC" "$2" "$3"
+    bash "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" "$2" "$3"
 else
-    echo -e "\nFunction script Repository_Manager/.Update_Repositories/.Update_$FUNC not found."
+    echo -e "\nFunction script Repository_Manager/src/.Update_Repositories/.Update_$FUNC not found."
     exit 1
 fi
