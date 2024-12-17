@@ -6,7 +6,6 @@ function Check_Choiced_Repository() {
     else
         echo -e "\nInvalid parameter. Try again"
         exit 1
-        ;;
     fi
 }
 

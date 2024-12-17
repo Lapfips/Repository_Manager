@@ -17,6 +17,7 @@ else
         else
             read -p "Enter your pseudo : " PSEUDO_NAME
             NAME="$PSEUDO_NAME/$CAT"
+        fi
     else
         CAT="$1"
         NAME="$2"
