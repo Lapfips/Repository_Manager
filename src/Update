@@ -9,8 +9,8 @@ else
     CHOICE="$1"
 fi
 
-if [[ ! -d $path ]]; then
-    mkdir -p $path
+if [[ ! -d $PATH ]]; then
+    mkdir -p $PATH
 fi
 
 case $CHOICE in

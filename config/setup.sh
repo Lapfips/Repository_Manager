@@ -4,7 +4,7 @@
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
-BLUE=$(tput setaf 4)
+CYAN=$(tput setaf 6)
 NC=$(tput sgr0)
 BOLD=$(tput bold)
 
@@ -25,7 +25,7 @@ fi
 echo -e "${YELLOW}\nChecking for SSH key...${NC}"
 if [[ -d "$HOME/.ssh" ]]; then
     while true; do
-        read -p "${BLUE}An SSH key already exists. Do you want to overwrite it? (y or n): ${NC} " SSH_KEY
+        read -p "${CYAN}An SSH key already exists. Do you want to overwrite it? (y or n): ${NC} " SSH_KEY
         case $SSH_KEY in
             [Yy]*)
                 ssh-keygen -t ed25519
@@ -54,7 +54,7 @@ if [[ -f "$HOME/.gitconfig" ]]; then
     echo -e "${BOLD}Current content of your .gitconfig file:${NC}"
     cat "$HOME/.gitconfig"
     while true; do
-        read -p "${BLUE}Do you want to overwrite your .gitconfig? (y or n): ${NC} " CHOICE
+        read -p "${CYAN}Do you want to overwrite your .gitconfig? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
                 read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
@@ -85,7 +85,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
     echo -e "${BOLD}Current content of your .bash_profile file:${NC}"
     cat "$HOME/.bash_profile"
     while true; do
-        read -p "${BLUE}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
+        read -p "${CYAN}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
                 cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
