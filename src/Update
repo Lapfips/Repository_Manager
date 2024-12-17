@@ -25,10 +25,11 @@ fi
 case $CHOICE in
     -a|--all) FUNC=All ;;
     -help) 
-        echo -e "\nUsage: prog -upt <option>\n\n
-        Options: \n
-        -a    -> Update all your repositories\n
-        --all -> Update all your repositories"
+        echo -e "\nUsage: prog -upt <option>\n
+        Options:\n
+        -a    -> Update all your repositories
+        --all -> Update all your repositories
+        <category> -> Update repositories from this category\n"
         exit 0
         ;;
     *)

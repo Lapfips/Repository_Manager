@@ -12,11 +12,11 @@ case $OPT in
     -add) FUNC="AddCategory" ;;
     -rm) FUNC="RemoveCategory" ;;
     -list) FUNC="ListCategories" ;;
-    -help) echo -e "\nUsage prog -cat <option> <category_name> <repository_name>\n\n
-        Options:\n\n
-        -add  -> Add a repository category\n
-        -rm   -> Remove a repository category\n
-        -list -> List all categories"
+    -help) echo -e "\nUsage prog -cat <option> <category_name> <repository_name>\n
+        Options:\n
+        -add  -> Add a repository category
+        -rm   -> Remove a repository category
+        -list -> List all categories\n"
         exit 0
         ;;
     *)  echo -e "\nInvalid parameter. Try again" 
