@@ -3,7 +3,7 @@
 github="git@github.com:"
 repositories=( )
 
-for repo in "${repositories_optional[@]}"; do
+for repo in "${repositories[@]}"; do
     echo "Updating $repo"
     bash Repository_Manager/.Update/.UpdateRepo "$repo" "$github" "$1"
 done

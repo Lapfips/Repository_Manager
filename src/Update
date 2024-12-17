@@ -42,6 +42,7 @@ esac
 
 if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" ]]; then
     echo
+    echo "Updating $FUNC"
     bash "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" "$2" "$3"
 else
     echo -e "\nFunction script Repository_Manager/src/.Update_Repositories/.Update_$FUNC not found."
