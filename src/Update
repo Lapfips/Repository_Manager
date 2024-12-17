@@ -42,7 +42,6 @@ case $CHOICE in
 esac
 
 if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" ]]; then
-    echo
     bash "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" "$2" "$3"
 else
     echo -e "\nFunction script Repository_Manager/src/.Update_Repositories/.Update_$FUNC not found."

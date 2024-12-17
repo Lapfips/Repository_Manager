@@ -18,7 +18,7 @@ else
     fi
 fi
 
-if [[ "$NAME" != "*/*" ]];then
+if [[ $NAME != */* ]]; then
     read -p "Is this your own repository -> $NAME ? (yes/no) : " USER_CHOICE
     case $USER_CHOICE in
         no)
