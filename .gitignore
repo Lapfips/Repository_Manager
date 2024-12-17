@@ -1,1 +1,1 @@
-src/.Update_Repositories/.Update_*
+src/.Update_Repositories/.Update_* !src/Update_Repositories/.Update_All
