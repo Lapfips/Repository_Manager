@@ -5,6 +5,8 @@ repositories=( )
 
 if [[ "$1" == "auto" ]]; then
     auto="auto"
+    echo "Updating $repo"
+    bash Repository_Manager/src/.Update/.Update_Repo "$repo" "$github" "$auto"
 fi
 
 if [[ -z "$1" ]]; then
