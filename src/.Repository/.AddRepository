@@ -16,10 +16,10 @@ else
     fi
 fi
 
-read -p "Is this repository from an organization -> $NAME ? (yes/no) : " USER_CHOICE
+read -p "Is this your own repository -> $NAME ? (yes/no) : " USER_CHOICE
 if [[ $USER_CHOICE == "yes" ]]; then
-    read -p "Enter the organization name : " ORGANIZATION_NAME
-    NAME="$ORGANIZATION_NAME/$NAME"
+    read -p "Enter owner's name : " OWNER_NAME
+    NAME="$OWNER_NAME/$NAME"
 else
     read -p "Enter your pseudo : " PSEUDO_NAME
     NAME="$PSEUDO_NAME/$NAME"

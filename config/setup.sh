@@ -105,4 +105,4 @@ else
 fi
 
 echo -e "${GREEN}\nSetup execution completed successfully.\n
-${NC}${BOLD}Enter ${CYAN}. .bash_profile${NC}${BOLD} to inisalize your profile.\n${NC}"
+${NC}${BOLD}Enter ${YELLOW}. .bash_profile${NC}${BOLD} to inisalize your profile.\n${NC}"
