@@ -9,8 +9,8 @@ else
 fi
 
 case $OPT in
-    -add) FUNC="AddRepository" ;;
-    -rm) FUNC="RemoveRepository" ;;
+    -add) FUNC="AddCategory" ;;
+    -rm) FUNC="RemoveCategory" ;;
     -help) echo -e "\nUsage prog -cat <option> <category_name> <repository_name>\n\n
         Options:\n\n
         -add  -> Add a repository category\n
