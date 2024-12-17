@@ -90,11 +90,9 @@ if [[ -f "$HOME/.bash_profile" ]]; then
             [Yy]*)
                 cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
                 echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
-                . $HOME/.bash_profile
                 break ;;
             [Nn]*)
                 echo -e "${GREEN}No changes were made to your .bash_profile file.${NC}"
-                . $HOME/.bash_profile
                 break ;;
             *)
                 echo -e "${RED}Please answer y or n.${NC}" ;;
@@ -104,7 +102,6 @@ else
     echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
     cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
     echo -e "${GREEN}.bash_profile file created successfully.\n${NC}"
-    . $HOME/.bash_profile
 fi
 
-echo -e "${GREEN}\nSetup execution completed successfully.${NC}"
+echo -e "${GREEN}\nSetup execution completed successfully. Just enter . .bash_profile to inisalize your profile.${NC}"
