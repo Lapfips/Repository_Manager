@@ -1,27 +1,27 @@
 #!/bin/bash
 
 if [[ "$1" = "-help" ]]; then
-    echo -e "Usage <category> <repository_name>"
+    echo -e "Usage porg -repo -rm <category_name> <repository_name>"
 else
     if [[ "$#" -lt 2 ]]; then
         echo -e "\nPlease enter the following information(s): \n"
             if [[ "$#" -lt 1 ]]; then
                 [ -z "$1" ] && read -p "Enter the repository category: " CAT
             fi
-        [ -z "$2" ] && read -p "Enter the repository name: " NAME
+        [ -z "$2" ] && read -p "Enter the repository name (<user>/<repository_name> or <organization>/<repository_name>): " NAME
     else
         CAT="$1"
         NAME="$2"
     fi
 fi
 
-if [[ ! -f ".Update_$CAT" ]]; then
+if [[ ! -f "Repository_Manager/.Update_Repositories/.Update_$CAT" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
     exit 1
 fi
 
-if grep -q "$NAME" ".Update_$CAT"; then
-    sed -i "/repositories=(/ s/ $NAME//" ".Update_$CAT"
+if grep -q "$NAME" "Repository_Manager/.Update_Repositories/.Update_$CAT"; then
+    sed -i "/repositories=(/ s/ $NAME//" "Repository_Manager/.Update_Repositories/.Update_$CAT"
     echo -e "\nRepository '$NAME' removed from $CAT."
 else
     echo -e "\nRepository '$NAME' does not exist in $CAT."

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ -z "$1" ]]; then
+    echo
+    read -p "Which option do you want to call ? : " OPT
+    echo
+else
+    OPT=$1 
+fi
+
+case $OPT in
+    -add) FUNC="AddRepository" ;;
+    -rm) FUNC="RemoveRepository" ;;
+    -help) echo -e "Usage prog -cat <option> <category_name> <repository_name>\n\n
+        Options:\n\n
+        -add  -> Add a repository category\n
+        -rm   -> Remove a repository category\n"
+        exit 0
+        ;;
+    *)  echo -e "\nInvalid parameter. Try again" 
+        exit 1 
+        ;;
+esac
+
+if [[ -f "$FUNC" ]]; then
+    bash "RepositoryManager/Category/$func" $2 $3 $4
+else
+    echo -e "\nFunction script $FUNC not found."
+    exit 1
+fi

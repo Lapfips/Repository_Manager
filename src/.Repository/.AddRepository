@@ -1,28 +1,35 @@
 #!/bin/bash
 
 if [[ "$1" = "-help" ]]; then
-    echo -e "Usage <category> <repository_name>"
+    echo -e "Usage prog -repo -add <category_name> <repository_name>"
 else
     if [[ "$#" -lt 2 ]]; then
         echo -e "\nPlease enter the following information(s): \n"
             if [[ "$#" -lt 1 ]]; then
                 [ -z "$1" ] && read -p "Enter the repository category: " CAT
             fi
-        [ -z "$2" ] && read -p "Enter the repository name: " NAME
+        [ -z "$2" ] && read -p "Enter the repository name : " NAME
+        read -p "Is this repository from an organization ? (yes/no) : " USER_CHOICE
+        if [[ $USER_CHOICE == "yes" ]]; then
+            read -p "Enter the organization name : " ORGANIZATION_NAME
+            NAME="$ORGANIZATION_NAME/$CAT"
+        else
+            read -p "Enter your pseudo : " PSEUDO_NAME
+            NAME="$PSEUDO_NAME/$CAT"
     else
         CAT="$1"
         NAME="$2"
     fi
 fi
 
-if [[ ! -f ".Update_$CAT" ]]; then
+if [[ ! -f "Repository_Manager/.Update_Repositories/.Update_$CAT" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
     exit 1
 fi
 
-if grep -q "\"$NAME\"" ".Update_$CAT"; then
+if grep -q "\"$NAME\"" "Repository_Manager/.Update_Repositories/.Update_$CAT"; then
     echo -e "\nRepository '$NAME' already exists in $CAT."
 else
-    sed -i "/repositories=(/ s/)/ $NAME)/" ".Update_$CAT"
+    sed -i "/repositories=(/ s/)/ $NAME)/" "Repository_Manager/.Update_Repositories/.Update_$CAT"
     echo -e "\nRepository '$NAME' added to $CAT."
 fi

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+PATH="GitRepositories"
+
+if [[ -z "$1" ]]; then
+    echo
+    read -p "Which type of update do you want to do ? :  " CHOICE
+else
+    CHOICE=$1
+fi
+
+if [[ ! -d $path ]]; then
+    mkdir -p $path
+fi
+
+case $CHOICE in
+    -a) FUNC=All ;;
+    --all) FUNC=All ;;
+    -help) echo "Usage: prog -upt <option>\n\n
+        Options: \n\n
+        -a    -> Update all your repositories\n
+        --all -> Update all your repositories"
+        exit 0
+        ;;
+    *) if [[ -f "Repository_Manager/.Update_Repositories/.Update_$CHOICE" ]]; then
+        FUNC="$CHOICE" ;;
+        else
+            echo -e "\nInvalid parameter. Try again"
+            exit 1
+            ;;
+        fi
+esac
+
+if [[ -f "Repository_Manager/.Update_Repositories/.Update_$FUNC" ]]; then
+    echo
+    bash "Repository_Manager/.Update_Repositories/.Update_$FUNC" $2 $3
+else
+    echo -e "\nFunction script Repository_Manager/.Update_Repositories/.Update_$FUNC not found."
+    exit 1
+fi
