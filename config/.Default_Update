@@ -13,7 +13,7 @@ if [[ -z "$1" ]]; then
         bash Repository_Manager/src/.Update/.Update_Repo "$repo" "$github" "$auto"
     done
 else
-    for repo in $repositories; do
+    for repo in "${$repositories[@]}"; do
         if [[ $(basename $repo) == "$1" ]]; then
             if [[ "$2" != "" ]]; then
                 auto="$2"
