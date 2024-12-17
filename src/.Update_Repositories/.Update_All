@@ -1,7 +1,11 @@
 #!/bin/bash
 
-for repo in $(ls Repository_Manager/src/.Update_Repositories/.Update*); do
+repositories=$(ls Repository_Manager/src/.Update_Repositories/.Update*)
+
+echo $repositories
+
+for repo in $repositories; do
     if [[ $repo != ".Update_All" ]]; then
-        bash "Repository_Manager/src/.Update_Repositories" "$repo" "$1" "$2" "$3"
+        bash "Repository_Manager/src/.Update/.Update_Repo" "$repo" "$1" "$2" "$3"
     fi
 done

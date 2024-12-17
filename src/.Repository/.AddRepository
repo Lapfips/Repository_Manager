@@ -19,10 +19,10 @@ fi
 read -p "Is this repository from an organization -> $NAME ? (yes/no) : " USER_CHOICE
 if [[ $USER_CHOICE == "yes" ]]; then
     read -p "Enter the organization name : " ORGANIZATION_NAME
-    NAME="$ORGANIZATION_NAME/$CAT"
+    NAME="$ORGANIZATION_NAME/$NAME"
 else
     read -p "Enter your pseudo : " PSEUDO_NAME
-    NAME="$PSEUDO_NAME/$CAT"
+    NAME="$PSEUDO_NAME/$NAME"
 fi
 
 if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then
