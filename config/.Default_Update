@@ -3,7 +3,22 @@
 github="git@github.com:"
 repositories=( )
 
-for repo in "${repositories[@]}"; do
-    echo "Updating $repo"
-    bash Repository_Manager/src/.Update/.Update_Repo "$repo" "$github" "$1"
-done
+if [[ "$1" == "auto" ]]; then
+    auto="auto"
+else
+    if [[ -z "$1" ]]; then
+        for repo in "${repositories[@]}"; do
+            echo "Updating $repo"
+            bash Repository_Manager/src/.Update/.Update_Repo "$repo" "$github" "$auto"
+        done
+    else
+        for repo in $repositories; do
+            if [[ $(basename $repo) == "$1" ]]; then
+                if [[ "$2" != "" ]]; then
+                    auto="$2"
+                fi
+                bash Repository_Manager/src/.Update/.Update_Repo "$repo" "$github" "$auto"
+            fi
+        done
+    fi
+fi
