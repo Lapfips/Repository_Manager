@@ -22,7 +22,7 @@ case $USER_CHOICE in
         read -p "Enter owner's name : " OWNER_NAME
         NAME="$OWNER_NAME/$NAME"
         ;;
-    you)
+    yes)
         read -p "Enter your pseudo : " PSEUDO_NAME
         NAME="$PSEUDO_NAME/$NAME"
         ;;
