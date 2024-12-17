@@ -18,17 +18,19 @@ else
     fi
 fi
 
-read -p "Is this your own repository -> $NAME ? (yes/no) : " USER_CHOICE
-case $USER_CHOICE in
-    no)
-        read -p "Enter owner's name : " OWNER_NAME
-        NAME="$OWNER_NAME/$NAME"
-        ;;
-    yes)
-        read -p "Enter your pseudo : " PSEUDO_NAME
-        NAME="$PSEUDO_NAME/$NAME"
-        ;;
-esac
+if [[ "$NAME" != "*/*" ]];then
+    read -p "Is this your own repository -> $NAME ? (yes/no) : " USER_CHOICE
+    case $USER_CHOICE in
+        no)
+            read -p "Enter owner's name : " OWNER_NAME
+            NAME="$OWNER_NAME/$NAME"
+            ;;
+        yes)
+            read -p "Enter your pseudo : " PSEUDO_NAME
+            NAME="$PSEUDO_NAME/$NAME"
+            ;;
+    esac
+fi
 
 if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
