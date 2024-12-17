@@ -4,34 +4,40 @@ function Check_Choiced_Repository() {
     if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$1" ]]; then
         FUNC="$1"
     else
-        echo -e "\nInvalid parameter. Try again"
+        echo -e "\nInvalid parameter '$1'"
         exit 1
     fi
 }
 
-PATH="GitRepositories"
+REPO_PATH="GitRepositories"
 
 if [[ -z "$1" ]]; then
     echo
-    read -p "Which type of update do you want to do ? :  " CHOICE
+    read -p "Which type of update do you want to do? : " CHOICE
 else
     CHOICE="$1"
 fi
 
-if [[ ! -d $PATH ]]; then
-    mkdir -p $PATH
+if [[ ! -d $REPO_PATH ]]; then
+    mkdir -p $REPO_PATH
 fi
 
 case $CHOICE in
-    -a) FUNC=All ;;
-    --all) FUNC=All ;;
-    -help) echo "\nUsage: prog -upt <option>\n\n
-        Options: \n\n
+    -a|--all) FUNC=All ;;
+    -help) 
+        echo -e "\nUsage: prog -upt <option>\n\n
+        Options: \n
         -a    -> Update all your repositories\n
         --all -> Update all your repositories"
         exit 0
         ;;
-    *) Check_Choiced_Repository $CHOICE
+    *)
+        if [[ -z "$CHOICE" ]]; then
+            echo -e "\nNo option provided. Use -help to display the usage."
+            exit 1
+        fi
+        Check_Choiced_Repository $CHOICE
+        ;;
 esac
 
 if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" ]]; then
