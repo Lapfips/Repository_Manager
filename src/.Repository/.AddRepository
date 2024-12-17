@@ -1,15 +1,17 @@
 #!/bin/bash
 
 if [[ "$1" = "-help" ]]; then
-    echo -e "\nUsage prog -repo -add <category_name> <repository_name>"
+    echo -e "\nUsage prog -repo -add <category_name> <repository_name>\n"
     exit 0
 else
-    if [[ "$#" -lt 2 ]]; then
-        echo -e "\nPlease enter the following information(s): \n"
-            if [[ "$#" -lt 1 ]]; then
-                [ -z "$1" ] && read -p "Enter the repository category: " CAT
-            fi
-        [ -z "$2" ] && read -p "Enter the repository name : " NAME
+    if [[ -z "$1" ]]; then
+        if [[ -z "$2" ]]; then
+            echo -e "\nPlease enter the following information(s) : \n"
+            read -p "Enter the repository category: " CAT
+        else
+            echo -e "\nPlease enter the following information : \n"
+        fi
+        read -p "Enter the repository name : " NAME
     else
         CAT="$1"
         NAME="$2"

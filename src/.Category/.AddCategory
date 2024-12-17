@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [[ "$1" = "-help" ]]; then
-    echo -e "\nUsage prog -cat -add <category_name> <repository_name>"
+    echo -e "\nUsage prog -cat -add <category_name> <repository_name(optionnal)>\n"
     exit 0
 else
     if [[ -z "$1" ]]; then
-        echo -e "\nPlease enter the following information(s): \n"
+        echo -e "\nPlease enter the following information : \n"
         read -p "Enter the category name: " CAT
     else
         CAT="$1"
@@ -20,7 +20,11 @@ else
     cp Repository_Manager/config/.Default_Update "Repository_Manager/src/.Update_Repositories/.Update_$CAT"
 fi
 
-read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE
+if [[ -z "$2" ]]; then
+    read -p "Do you want to add a repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE
+else
+    $REPOSITORY_NAME="$2"
+fi
 
 while [[ "$USER_CHOICE" != "no" ]]; do
     echo

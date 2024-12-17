@@ -101,7 +101,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
 else
     echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
     cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
-    echo -e "${GREEN}.bash_profile file created successfully.\n${NC}"
+    echo -e "${GREEN}.bash_profile file created successfully.${NC}"
 fi
 
 echo -e "${GREEN}\nSetup execution completed successfully.\n

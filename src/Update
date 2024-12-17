@@ -27,9 +27,9 @@ case $CHOICE in
     -help) 
         echo -e "\nUsage: prog -upt <option>\n
         Options:\n
-        -a    -> Update all your repositories
-        --all -> Update all your repositories
-        <category> -> Update repositories from this category\n"
+        -a          -> Update all your repositories
+        --all       -> Update all your repositories
+        <category>  -> Update repositories from this category\n"
         exit 0
         ;;
     *)
