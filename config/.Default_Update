@@ -5,5 +5,5 @@ repositories=( )
 
 for repo in "${repositories[@]}"; do
     echo "Updating $repo"
-    bash Repository_Manager/.Update/.Update_Repo "$repo" "$github" "$1"
+    bash Repository_Manager/src/.Update/.Update_Repo "$repo" "$github" "$1"
 done
