@@ -16,7 +16,7 @@ if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then
     echo -e "\nError: The file for category '$CAT' already exist."
     exit 1
 else
-    touch Repository_Mangager/src/.Update_Repositories/.Update_$CAT"
+    touch "Repository_Mangager/src/.Update_Repositories/.Update_$CAT"
     cp Repository_Manager/config/.Default_Update "Repository_Mangager/src/.Update_Repositories/.Update_$CAT"
 fi
 
