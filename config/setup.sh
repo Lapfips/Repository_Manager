@@ -104,5 +104,5 @@ else
     echo -e "${GREEN}.bash_profile file created successfully.\n${NC}"
 fi
 
-echo -e "${GREEN}\nSetup execution completed successfully. 
+echo -e "${GREEN}\nSetup execution completed successfully.\n
 ${NC}${BOLD}Enter ${CYAN}. .bash_profile${NC}${BOLD} to inisalize your profile.${NC}"
