@@ -2,6 +2,7 @@
 
 if [[ "$1" = "-help" ]]; then
     echo -e "\nUsage prog -repo -add <category_name> <repository_name>"
+    exit 0
 else
     if [[ "$#" -lt 2 ]]; then
         echo -e "\nPlease enter the following information(s): \n"
