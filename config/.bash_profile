@@ -21,7 +21,7 @@ else
 fi
 
 # Repository_Manager shorcut
-alias prog=" bash $HOME/Repository_Manager/src/main.sh"
+alias prog="bash $HOME/Repository_Manager/src/main.sh"
 
 # Clearing CMD before executing powershell
 alias cmd="clear && cmd"
