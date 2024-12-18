@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Check for arguments
 if [[ "$1" = "-help" ]]; then
     echo -e "\nUsage prog -cat -rm <category_name>\n"
     exit 0
