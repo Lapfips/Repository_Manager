@@ -31,6 +31,9 @@ if [[ "$1" != "" ]]; then
             exit 1
         fi
     fi
+else
+    echo -e "Error: Enter a category name\n"
+    exit 1
 fi
 
 Count=$(Count_Repositories)

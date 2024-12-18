@@ -3,9 +3,14 @@
 function Is_Repository() {
     COUNT=0
     REPOSITORY_NAME="$2"
+    USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
     for repo in "${repositories[@]}"; do
         if [[ $REPOSITORY_NAME == $repo ]]; then
             COUNT+=1
+        else
+            if [[ $REPOSITORY_NAME == ${repo#"$USER_PSEUDO/"} ]]; then
+                COUNT+=1
+            fi
         fi
     done
     return $COUNT
