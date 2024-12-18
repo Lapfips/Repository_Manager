@@ -73,13 +73,13 @@ cd Repository_Manager && echo -e "${GREEN}Program launched${NC}" || {
 
 How to use my program ? After having parametred the program you should be able to call it with `prog`. There is multiple options for this main command :
 
-| Command | Description                                     |
-| ------- | ----------------------------------------------- |
-| `-upt`  | Update repositories.                            |
-| `-cat`  | Manage categories for repositories.             |
-| `-repo` | Manage repositories.                            |
-| `-list` | Show you categories and repositories structure. |
-| `-help` | Display help for commands or options.           |
+| Command      | Description                                     |
+| ------------ | ----------------------------------------------- |
+| `prog -upt`  | Update repositories.                            |
+| `prog -cat`  | Manage categories for repositories.             |
+| `prog -repo` | Manage repositories.                            |
+| `prog -list` | Show you categories and repositories structure. |
+| `prog -help` | Display help for commands or options.           |
 
 ### Update
 
@@ -106,10 +106,10 @@ You can choose how to update this specific category repositories with :
 
 You can choose the commit message to send with selected repository update :
 
-| Command                   | Description                                                               |
-| ------------------------- | ------------------------------------------------------------------------- |
-| `<custom_commit_message>` | Update choosed repository in the category with customised commit message. |
-| `auto`                    | Auto commit message to choosed repository in selected category.           |
+| Command                                                               | Description                                                               |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `prog -upt <category_name> <repository_name> <custom_commit_message>` | Update choosed repository in the category with customised commit message. |
+| `auto`                                                                | Auto commit message to choosed repository in selected category.           |
 
 ### Category
 
