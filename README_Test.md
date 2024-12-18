@@ -85,17 +85,17 @@ How to use my program ? After having parametred the program you should be able t
 
 Option used to update your repositories based on you choices. You can update all you repositories in a row or online ones in a specific category or simply just a repository. You can also choose to right directly your own commit message or to automate it. Thre is multiple options for the update option :
 
-| Command                                                               | Description                                                                        |
-| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `prog -upt -a`                                                        | Every repositories.                                                                |
-| `prog -upt --all`                                                     | Every repositories.                                                                |
-| `prog -upt <category_name>`                                           | Select category.                                                                   |
-| `prog -upt <category_name> auto`                                      | Auto commit message to all the repository in the category that needs to be update. |
-| `prog -upt <category_name> <custom_commit_message>`                   | Update with customised commit message all the repository in the category.          |
-| `prog -upt <category_name> <repository_name>`                         | Specific repository in the category.                                               |
-| `prog -upt <category_name> <repository_name> auto`                    | Auto commit message to choosed repository in selected category.                    |
-| `prog -upt <category_name> <repository_name> <custom_commit_message>` | Update repository in the category with customised commit message.                  |
-| `prog -upt -help`                                                     | Display help for commands or options.                                              |
+| Command                                                        | Description                                                                        |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `prog -upt -a`                                                 | Every repositories.                                                                |
+| `prog -upt --all`                                              | Every repositories.                                                                |
+| `prog -upt <category_name>`                                    | Select category.                                                                   |
+| `prog -upt <category_name> auto`                               | Auto commit message to all the repository in the category that needs to be update. |
+| `prog -upt <category_name> <commit_message>`                   | Update with customised commit message all the repository in the category.          |
+| `prog -upt <category_name> <repository_name>`                  | Specific repository in the category.                                               |
+| `prog -upt <category_name> <repository_name> auto`             | Auto commit message to choosed repository in selected category.                    |
+| `prog -upt <category_name> <repository_name> <commit_message>` | Update repository in the category with customised commit message.                  |
+| `prog -upt -help`                                              | Display help for commands or options.                                              |
 
 ### Category
 
