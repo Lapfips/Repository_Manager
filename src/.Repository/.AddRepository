@@ -26,8 +26,7 @@ if [[ $NAME != */* ]]; then
             NAME="$OWNER_NAME/$NAME"
             ;;
         yes)
-            read -p "Enter your pseudo : " PSEUDO_NAME
-            NAME="$PSEUDO_NAME/$NAME"
+            NAME="$(sed -n 's/^.*name = //p' .gitconfig)/$NAME"
             ;;
     esac
 fi

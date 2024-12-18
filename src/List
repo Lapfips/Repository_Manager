@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function Check_if_owner() {
+    USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
+    if [[ $1 == "$USER_PSEUDO"/* ]]; then
+        repo="$1"
+        repo=${repo#"$USER_PSEUDO/"}
+    fi
+}
+
+text="Your categories and repositories structure : \n\n"
+
+for cat in $(ls -a GitRepositories/Repository_Manager/src/.Update_Repositories/.Update*); do
+    if [[ $(basename $cat) != ".Update_All" ]]; then
+        text+="     $cat : \n"
+        repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$cat"
+        for repo in $repositories; do
+            Check_if_owner() $repo
+            text+="          $repo \n"
+        done
+        text+="\n"
+    fi
+done
+
+echo -e "$text"
