@@ -3,6 +3,7 @@
 function Count_Repositories() {
     COUNT=0
     for repo in $(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"); do
+        echo $repo to count
         if [[ $repo != *")"* ]]; then
             COUNT+=1
         fi
