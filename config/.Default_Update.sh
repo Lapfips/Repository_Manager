@@ -23,14 +23,14 @@ if [[ "$1" == "auto" ]]; then
     for repo in "${repositories[@]}"; do
         commit="auto"
         echo "Updating $repo"
-        bash Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
+        ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
     done
 fi
 
 if [[ -z "$1" ]]; then
     for repo in "${repositories[@]}"; do
         echo "Updating $repo"
-        bash Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github"
+        ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github"
     done
 else
     is_there_repository=$(Is_Repository $1)
@@ -38,11 +38,11 @@ else
         if [[ "$2" == "auto" ]]; then
             commit="auto"
             echo "Updating $repo"
-            bash Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
+            ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
         else
             commit="$2"
             echo "Updating $repo"
-            bash Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
+            ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
         fi
     else
         echo -e "Wrong repository name\n"

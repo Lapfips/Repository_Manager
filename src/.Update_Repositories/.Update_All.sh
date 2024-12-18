@@ -6,6 +6,6 @@ for repo in $repositories; do
     if [[ $(basename $repo) != ".Update_All" ]]; then
         USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
         repo=${repo#"$USER_PSEUDO/"}
-        bash "Repository_Manager/src/.Update/.Update_$repo.sh" "$repo" "$1" "$2" "$3"
+        ./Repository_Manager/src/.Update/.Update_$repo.sh "$repo" "$1" "$2" "$3"
     fi
 done

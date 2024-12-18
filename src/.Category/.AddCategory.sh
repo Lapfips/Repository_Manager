@@ -25,7 +25,7 @@ if [[ "$2" == "" ]]; then
 else
     REPOSITORY_NAME="$2"
     echo
-    bash Repository_Manager/src/main.sh -repo -add "$CAT" "$REPOSITORY_NAME"
+    ./Repository_Manager/src/main.sh -repo -add "$CAT" "$REPOSITORY_NAME"
     echo
     read -p "Do you want to add another repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE 
 fi
@@ -37,7 +37,7 @@ fi
 while [[ "$USER_CHOICE" != "no" ]]; do
     echo
     read -p "Enter the repository name you want to add : " REPOSITORY_NAME
-    bash Repository_Manager/src/main.sh -repo -add "$CAT" "$REPOSITORY_NAME"
+    ./Repository_Manager/src/main.sh -repo -add "$CAT" "$REPOSITORY_NAME"
     echo
     read -p "Do you want to add another repository to your new category -> $CAT ? (yes/no) : " USER_CHOICE 
 done

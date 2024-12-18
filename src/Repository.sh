@@ -25,7 +25,7 @@ case $OPT in
 esac
 
 if [[ -f "Repository_Manager/src/.Repository/.$FUNC.sh" ]]; then
-    bash "Repository_Manager/src/.Repository/.$FUNC.sh" "$2" "$3" "$4"
+    ./Repository_Manager/src/.Repository/.$FUNC.sh "$2" "$3" "$4"
 else
     echo -e "\nFunction script $FUNC.sh not found."
     exit 1
