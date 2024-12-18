@@ -16,11 +16,11 @@ read -p "Do you really want to remove your $CAT category ? (y/n) : " USER_CHOICE
 
 case $USER_CHOICE in
     [Yy])
-        if [[ ! -f "Repository_Mangager/src/.Update_Repositories/.Update_$CAT" ]]; then
+        if [[ ! -f "Repository_Mangager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
             echo -e "\nError: The file for category '$CAT' does not exist."
             exit 1
         else
-            rm "Repository_Mangager/src/.Update_Repositories/.Update_$CAT"
+            rm "Repository_Mangager/src/.Update_Repositories/.Update_$CAT.sh"
         fi
         ;;
     [Nn])

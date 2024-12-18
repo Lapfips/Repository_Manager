@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function Check_Choiced_Repository() {
-    if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$1" ]]; then
+    if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$1.sh" ]]; then
         FUNC="$1"
     else
         echo -e "\nInvalid parameter '$1'"
@@ -41,9 +41,9 @@ case $CHOICE in
         ;;
 esac
 
-if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" ]]; then
-    bash "Repository_Manager/src/.Update_Repositories/.Update_$FUNC" "$2" "$3"
+if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$FUNC.sh" ]]; then
+    bash "Repository_Manager/src/.Update_Repositories/.Update_$FUNC.sh" "$2" "$3"
 else
-    echo -e "\nFunction script Repository_Manager/src/.Update_Repositories/.Update_$FUNC not found."
+    echo -e "\nFunction script Repository_Manager/src/.Update_Repositories/.Update_$FUNC.sh not found."
     exit 1
 fi

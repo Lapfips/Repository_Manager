@@ -31,14 +31,14 @@ if [[ $NAME != */* ]]; then
     esac
 fi
 
-if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then
+if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
     exit 1
 fi
 
-if grep -q "\"$NAME\"" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"; then
+if grep -q "\"$NAME\"" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
     echo -e "\nRepository '$NAME' already exists in $CAT."
 else
-    sed -i "/repositories=( / s#)#$NAME )#" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"
+    sed -i "/repositories=( / s#)#$NAME )#" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
     echo -e "\nRepository '$NAME' added to $CAT."
 fi

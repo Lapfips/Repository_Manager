@@ -26,9 +26,9 @@ case $FUNC in
         ;;
 esac
 
-if [[ -f "Repository_Manager/src/$FUNC" ]]; then
-    bash "Repository_Manager/src/$FUNC" "$2" "$3" "$4" "$5"
+if [[ -f "Repository_Manager/src/$FUNC.sh" ]]; then
+    bash "Repository_Manager/src/$FUNC.sh" "$2" "$3" "$4" "$5"
 else
-    echo -e "\nFunction script $FUNC not found."
+    echo -e "\nFunction script $FUNC.sh not found."
     exit 1
 fi

@@ -2,7 +2,7 @@
 
 function Count_Repositories() {
     COUNT=0
-    for repo in $(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT"); do
+    for repo in $(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"); do
         if [[ $repo != *")"* ]]; then
             COUNT+=1
         fi
@@ -24,7 +24,7 @@ if [[ "$1" != "" ]]; then
         exit 0
     else
         CAT="$1"
-        if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" && "$CAT" != "All" ]]; then
+        if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" && "$CAT" != "All" ]]; then
             text="Your categories structure : \n\n"
         else
             echo -e "Error: This category name does not exist -> $CAT\n"
@@ -39,7 +39,7 @@ fi
 Count=$(Count_Repositories)
 if [[ $Count > 0 ]]; then
     text+="     "$CAT" : \n"
-    repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT")
+    repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh")
     for repo in $repositories; do
         if [[ $repo != *")"* ]]; then
             Check_if_owner "$repo"

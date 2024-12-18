@@ -2,7 +2,7 @@
 
 function Count_Categories() {
     COUNT=0
-    for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update*); do
+    for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All" ]]; then
             COUNT=+1
         fi
@@ -24,7 +24,7 @@ fi
 
 Count=$(Count_Categories)
 if [[ $Count > 0 ]]; then
-    for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update*); do
+    for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All" ]]; then
             cat_basename=$(basename "$cat")
             cat=${cat_basename#".Update_"}

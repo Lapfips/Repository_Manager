@@ -13,11 +13,11 @@ else
     fi
 fi
 
-if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT" ]]; then
+if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
     echo -e "\nError: The file for category '$CAT' already exist."
     exit 1
 else
-    cp Repository_Manager/config/.Default_Update "Repository_Manager/src/.Update_Repositories/.Update_$CAT"
+    cp Repository_Manager/config/.Default_Update "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
 fi
 
 if [[ "$2" == "" ]]; then

@@ -24,9 +24,9 @@ case $OPT in
         ;;
 esac
 
-if [[ -f "Repository_Manager/src/.Category/.$FUNC" ]]; then
-    bash "Repository_Manager/src/.Category/.$FUNC" "$2" "$3" "$4"
+if [[ -f "Repository_Manager/src/.Category/.$FUNC.sh" ]]; then
+    bash "Repository_Manager/src/.Category/.$FUNC.sh" "$2" "$3" "$4"
 else
-    echo -e "\nFunction script $FUNC not found."
+    echo -e "\nFunction script $FUNC.sh not found."
     exit 1
 fi
