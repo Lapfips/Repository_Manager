@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ "$1" != "" ]]; then
+    if [[ "$1" == "-help" ]]; then
+        echo -e "Usage: prog -list\n"
+        exit 0
+    fi
+fi
+
 function Check_if_owner() {
     USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
     if [[ $1 == "$USER_PSEUDO"/* ]]; then
@@ -10,13 +17,17 @@ function Check_if_owner() {
 
 text="Your categories and repositories structure : \n\n"
 
-for cat in $(ls -a GitRepositories/Repository_Manager/src/.Update_Repositories/.Update*); do
-    if [[ $(basename $cat) != ".Update_All" ]]; then
-        text+="     $cat : \n"
-        repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$cat"
+for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update*); do
+    if [[ $(basename "$cat") != ".Update_All" ]]; then
+        cat_basename=$(basename "$cat")
+        cat=${cat_basename#".Update_"}
+        text+="     "$cat" : \n"
+        repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$cat")
         for repo in $repositories; do
-            Check_if_owner() $repo
-            text+="          $repo \n"
+            if [[ $repo != *")"* ]]; then
+                Check_if_owner "$repo"
+                text+="          $repo \n"
+            fi
         done
         text+="\n"
     fi
