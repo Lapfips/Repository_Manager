@@ -85,32 +85,32 @@ How to use my program ? After having parametred the program you should be able t
 
 Option used to update your repositories based on you choices. You can update all you repositories in a row or online ones in a specific category or simply just a repository. You can also choose to right directly your own commit message or to automate it. Thre is multiple options for the update option :
 
-| Command                                                               | Description                                                                                          |
-| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `prog -upt -a`                                                        | Every repositories.                                                                                  |
-| `prog -upt --all`                                                     | Every repositories.                                                                                  |
-| `prog -upt <category_name>`                                           | Select category.                                                                                     |
-| `prog -upt <category_name> auto`                                      | Auto commit message to all the repository in the category that needs to be update.                   |
-| `prog -upt <category_name> <custom_commit_message>`                   | Update all the repository in the category that \n needs to be update with customised commit message. |
-| `prog -upt <category_name> <repository_name>`                         | Specific repository in the category.                                                                 |
-| `prog -upt <category_name> <repository_name> auto`                    | Auto commit message to choosed repository in selected category.                                      |
-| `prog -upt <category_name> <repository_name> <custom_commit_message>` | Update choosed repository in the category \n with customised commit message.                         |
-| `prog -upt -help`                                                     | Display help for commands or options.                                                                |
+| Command                                                               | Description                                                                        |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `prog -upt -a`                                                        | Every repositories.                                                                |
+| `prog -upt --all`                                                     | Every repositories.                                                                |
+| `prog -upt <category_name>`                                           | Select category.                                                                   |
+| `prog -upt <category_name> auto`                                      | Auto commit message to all the repository in the category that needs to be update. |
+| `prog -upt <category_name> <custom_commit_message>`                   | Update with customised commit message all the repository in the category.          |
+| `prog -upt <category_name> <repository_name>`                         | Specific repository in the category.                                               |
+| `prog -upt <category_name> <repository_name> auto`                    | Auto commit message to choosed repository in selected category.                    |
+| `prog -upt <category_name> <repository_name> <custom_commit_message>` | Update repository in the category with customised commit message.                  |
+| `prog -upt -help`                                                     | Display help for commands or options.                                              |
 
 ### Category
 
 Manage categories to group repositories with some options :
 
-| Command                                               | Description                                                                        |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `prog -cat -add <category_name>`                      | Add new category to hold repositories.                                             |
-| `prog -cat -add <category_name> <repository_name>`    | Add new repository in a new category.                                              |
-| `prog -cat -add <category_name> <repository_name> -r` | Add new repository in a new category \n without asking for adding more repository. |
-| `prog -cat -rm <category_name>`                       | Remove category and all his repositories.                                          |
-| `prog -cat -rm <category_name>`                       | Remove category .                                                                  |
-| `prog -cat -rm <category_name> -r`                    | Remove category without asking for confirmation.                                   |
-| `prog -cat -list`                                     | Show categories available.                                                         |
-| `prog -cat -help`                                     | Display help for commands or options.                                              |
+| Command                                               | Description                                      |
+| ----------------------------------------------------- | ------------------------------------------------ |
+| `prog -cat -add <category_name>`                      | Add new category to hold repositories.           |
+| `prog -cat -add <category_name> <repository_name>`    | Add new repository in a new category.            |
+| `prog -cat -add <category_name> <repository_name> -r` | Add a single new repository in a new category.   |
+| `prog -cat -rm <category_name>`                       | Remove category and all his repositories.        |
+| `prog -cat -rm <category_name>`                       | Remove category .                                |
+| `prog -cat -rm <category_name> -r`                    | Remove category without asking for confirmation. |
+| `prog -cat -list`                                     | Show categories available.                       |
+| `prog -cat -help`                                     | Display help for commands or options.            |
 
 ### Repository
 
