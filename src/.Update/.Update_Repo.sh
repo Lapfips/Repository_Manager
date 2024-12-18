@@ -23,7 +23,7 @@ if [[ -n $(git status --porcelain) ]]; then
             MESS="$3"
         fi
     else
-        read -p "Your commit message for $repo_name repository : " MESS
+        read -p "Enter your commit message for $repo_name repository : " MESS
     fi
     git commit -m "$MESS"
     git push
