@@ -33,10 +33,9 @@ else
     echo
     ./Repository_Manager/src/main.sh -repo -add "$CATEGORY_NAME" "$REPOSITORY_NAME"
     echo
-fi
-
-if [[ "$USER_CHOICE_ADD_NEW_REPOSITORY" != "no" ]]; then
-    read -p "Do you want to add another repository to your new category -> $CATEGORY_NAME ? (yes/no) : " USER_CHOICE_ADD_NEW_REPOSITORY
+    if [[ "$USER_CHOICE_ADD_NEW_REPOSITORY" != "no" ]]; then
+        read -p "Do you want to add another repository to your new category -> $CATEGORY_NAME ? (yes/no) : " USER_CHOICE_ADD_NEW_REPOSITORY
+    fi
 fi
 
 while [[ "$USER_CHOICE_ADD_NEW_REPOSITORY" != "no" ]]; do
