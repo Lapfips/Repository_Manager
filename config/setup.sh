@@ -117,7 +117,7 @@ else
     echo -e "$TIME - File .bash_profile created successfully." >> ~/Repository_Manager/logs/Configuration.log
 fi
 
-USER_HOME=$($HOME)
+USER_HOME="$HOME"
 sudo sh -c 'echo "bash $USER_HOME/Repository_Manager/src/main.sh" >> /usr/local/bin/prog'
 sudo chmod u+x /usr/local/bin/prog
 
