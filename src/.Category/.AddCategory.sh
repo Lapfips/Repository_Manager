@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TIME="[$(date +"%Y-%m-%d %T")]"
+
 if [[ -z "$1" ]]; then
     echo -e "\nPlease enter the following information : \n"
     read -p "Enter the category name: " CATEGORY_NAME
@@ -17,6 +19,7 @@ if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CATEGORY_NAME.sh"
     exit 1
 else
     cp Repository_Manager/config/.Default_Update.sh "Repository_Manager/src/.Update_Repositories/.Update_$CATEGORY_NAME.sh"
+    echo -e "$TIME - The file for category '$CATEGORY_NAME' has been created successfully." >> ~/Repository_Manager/logs/category.log
 fi
 
 if [[ "$3" == "-n" ]]; then

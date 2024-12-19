@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TIME="[$(date +"%Y-%m-%d %T")]"
+
 function Is_Repository() {
     COUNT=0
     REPOSITORY_NAME="$2"
@@ -24,6 +26,7 @@ if [[ "$1" == "auto" ]]; then
         commit="auto"
         echo "Updating $repo"
         ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
+        echo -e "$TIME - Repository $repo updated successfully." >> ~/Repository_Manager/logs/update.log
     done
 fi
 

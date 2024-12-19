@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TIME="[$(date +"%Y-%m-%d %T")]"
+
 if [[ "$1" = "-help" ]]; then
     echo -e "\nUsage prog -repo -add <category_name> <repository_name>\n"
     exit 0
@@ -40,5 +42,5 @@ if grep -q "\"$NAME\"" "Repository_Manager/src/.Update_Repositories/.Update_$CAT
     echo -e "\nRepository '$NAME' already exists in $CAT."
 else
     sed -i "/repositories=( / s#)#$NAME )#" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
-    echo -e "\nRepository '$NAME' added to $CAT."
+    echo -e "$TIME - Repository '$NAME' added to $CAT." >> ~/Repository_Manager/logs/repository.log
 fi

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TIME="[$(date +"%Y-%m-%d %T")]"
+
 if [[ "$1" = "-help" ]]; then
     echo -e "\nUsage porg -repo -rm <category_name> <repository_name>\n"
     exit 0
@@ -23,7 +25,7 @@ fi
 
 if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"; then
     sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
-    echo -e "\nRepository '$NAME' removed from $CAT."
+    echo -e "$TIME - Repository '$NAME' removed from $CAT." >> 
 else
     echo -e "\nRepository '$NAME' does not exist in $CAT."
 fi

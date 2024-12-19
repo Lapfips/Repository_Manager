@@ -29,8 +29,8 @@ function Count_Categories() {
 
 text="Your categories and repositories structure : \n\n"
 
-Count=$(Count_Categories)
-if [[ $Count > 0 ]]; then
+#Count=$(Count_Categories)
+#if [[ $Count > 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All" ]]; then
             cat_basename=$(basename "$cat")
@@ -46,8 +46,8 @@ if [[ $Count > 0 ]]; then
             text+="\n"
         fi
     done
-else
-    text+="     You don't have any category yet\n"
-fi
+#else
+#    text+="     You don't have any category yet\n"
+#fi
 
 echo -e "$text"
