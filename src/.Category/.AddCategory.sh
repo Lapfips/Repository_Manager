@@ -10,7 +10,7 @@ else
         echo -e "\nUsage prog -cat -add <category_name> <repository_name(optionnal)>\n"
         exit 0
     else
-        CAT="$1"
+        CATEGORY_NAME="$1"
     fi
 fi
 
