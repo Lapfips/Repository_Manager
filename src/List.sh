@@ -32,9 +32,10 @@ text="Your categories and repositories structure : \n\n"
 #Count=$(Count_Categories)
 #if [[ $Count > 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
-        if [[ $(basename "$cat") != ".Update_All" ]]; then
+        if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             cat_basename=$(basename "$cat")
             cat=${cat_basename#".Update_"}
+            echo $cat
             text+="     "$cat" : \n"
             repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$cat.sh")
             for repo in $repositories; do
