@@ -7,7 +7,7 @@ YELLOW=$(tput setaf 3)
 CYAN=$(tput setaf 6)
 NC=$(tput sgr0)
 BOLD=$(tput bold)
-TIME=$(date +"%Y-%m-%d %T")
+TIME="[$(date +"%Y-%m-%d %T")]"
 
 # Ensuring Git installation
 echo -e "${YELLOW}\nChecking for Git installation...${NC}"
@@ -69,7 +69,7 @@ if [[ -f "$HOME/.gitconfig" ]]; then
                 git config --global user.name "$NAME"
                 git config --global user.email "$EMAIL"
                 echo -e "${GREEN}.gitconfig has been updated successfully.${NC}"
-                echo -e "$TIME - .gitconfig has been updated successfully." >> ~/Repository_Manager/logs/Configuration.log
+                echo -e "$TIME - File .gitconfig updated successfully." >> ~/Repository_Manager/logs/Configuration.log
                 break ;;
             [Nn]*)
                 echo -e "${GREEN}No changes were made to your .gitconfig file.${NC}"
@@ -86,7 +86,7 @@ else
     git config --global user.name "$NAME"
     git config --global user.email "$EMAIL"
     echo -e "${GREEN}.gitconfig file created successfully.${NC}"
-    echo -e "$TIME - .gitconfig has been updated successfully." >> ~/Repository_Manager/logs/Configuration.log
+    echo -e "$TIME - File .gitconfig created successfully." >> ~/Repository_Manager/logs/Configuration.log
 fi
 
 # Configuring and executing .bash_profile accorded to the user choice
@@ -100,7 +100,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
             [Yy]*)
                 cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
                 echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
-                echo -e "$TIME - .bash_profile has been updated successfully." >> ~/Repository_Manager/logs/Configuration.log
+                echo -e "$TIME - File .bash_profile updated successfully." >> ~/Repository_Manager/logs/Configuration.log
                 break ;;
             [Nn]*)
                 echo -e "${GREEN}No changes were made to your .bash_profile file.${NC}"
@@ -114,7 +114,7 @@ else
     echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
     cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
     echo -e "${GREEN}.bash_profile file created successfully.${NC}"
-    echo -e "$TIME - .bash_profile has been updated successfully." >> ~/Repository_Manager/logs/Configuration.log
+    echo -e "$TIME - File .bash_profile created successfully." >> ~/Repository_Manager/logs/Configuration.log
 fi
 
 echo -e "${GREEN}\nSetup execution completed successfully.\n
