@@ -119,7 +119,7 @@ fi
 
 USER_NAME="$(whoami)"
 echo -e "${GREEN}\nAdding prog to your apps${NC}"
-sudo touch -p "/usr/local/bin/prog"
+sudo touch "/usr/local/bin/prog"
 sudo chmod u+x /usr/local/bin/prog
 sudo chown $USER_NAME:$USER_NAME /usr/local/bin/prog
 echo "$HOME/Repository_Manager/src/main.sh" >> /usr/local/bin/prog
