@@ -117,12 +117,14 @@ else
     echo -e "$TIME - File .bash_profile created successfully." >> ~/Repository_Manager/logs/Configuration.log
 fi
 
+echo -e "${YELLOW}\nAdding prog to your apps${NC}"
 USER_NAME="$(whoami)"
-echo -e "${GREEN}\nAdding prog to your apps${NC}"
 sudo touch "/usr/local/bin/prog"
 sudo chmod u+x /usr/local/bin/prog
 sudo chown $USER_NAME:$USER_NAME /usr/local/bin/prog
 echo "$HOME/Repository_Manager/src/main.sh" >> /usr/local/bin/prog
+echo -e "${GREEN}Command prog added to your apps${NC}"
+echo -e "Command prog added to apps" >> ~/Repository_Manager/logs/Configuration.log
 
 
 
