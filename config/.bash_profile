@@ -1,5 +1,7 @@
 SSH_ENV="$HOME/.ssh/environment"
 
+TIME="[$(date +"%Y-%m-%d %T")]"
+
 # Agent creation
 function start_agent {
     echo "Initialising new SSH agent..."
@@ -7,7 +9,8 @@ function start_agent {
     echo Succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+    /usr/bin/ssh-add
+    echo -e "$TIME - SSH agent successfully started." >> ~/Repository_Manager/logs/SSH_Environment.log;
 }
 
 # Check for .ssh environment
