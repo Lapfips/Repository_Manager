@@ -117,7 +117,7 @@ else
     echo -e "$TIME - File .bash_profile created successfully." >> ~/Repository_Manager/logs/Configuration.log
 fi
 
-sudo echo "bash $HOME/Repository_Manager/src/main.sh" >> /usr/local/bin/prog
+sudo sh -c 'echo "bash $HOME/Repository_Manager/src/main.sh" >> /usr/local/bin/prog'
 sudo chmod +x /usr/local/bin/prog
 
 echo -e "${GREEN}\nSetup execution completed successfully.\n
