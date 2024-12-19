@@ -23,3 +23,5 @@ else
 fi
 
 echo -e "$TIME - SSH agent successfully started." >> ~/Repository_Manager/logs/SSH_Environment.log
+
+alias prog="bash $HOME/Repository_Manager/src/main.sh"
