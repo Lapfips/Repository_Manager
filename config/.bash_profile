@@ -23,12 +23,3 @@ else
 fi
 
 echo -e "$TIME - SSH agent successfully started." >> ~/Repository_Manager/logs/SSH_Environment.log
-
-# Repository_Manager shorcut
-alias prog="bash $HOME/Repository_Manager/src/main.sh"
-
-# Clearing CMD before executing powershell
-alias cmd="clear && cmd"
-
-# Come back to the last PATH before directory changed
-alias back="cd -"
