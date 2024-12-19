@@ -121,7 +121,8 @@ echo -e "${GREEN}\nAdding prog to your apps${NC}"
 USER_HOME="$HOME"
 USER_NAME="$(whoami)"
 sudo sh -c 'echo "bash $USER_HOME/Repository_Manager/src/main.sh" >> /usr/local/bin/prog'
-chmod u+x /usr/local/bin/prog --user=$USER_NAME
+sudo chmod u+x /usr/local/bin/prog
+sudo chown $USER_NAME:$USER_NAME /usr/local/bin/prog
 
 echo -e "${GREEN}\nSetup execution completed successfully.\n
 ${NC}${BOLD}Enter ${YELLOW}'. .bash_profile'${NC}${BOLD} to initialize your profile.\n${NC}"
