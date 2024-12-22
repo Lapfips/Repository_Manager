@@ -25,7 +25,7 @@ text="Your categories structure : \n\n"
 
 if [[ $REPOSITORIES_COUNT != 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
-        if [[ $(basename "$cat") != ".Update_All" ]]; then
+        if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             cat_basename=$(basename "$cat")
             cat=${cat_basename#".Update_"}
             cat=${cat%".sh"}
