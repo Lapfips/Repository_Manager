@@ -23,7 +23,7 @@ if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; the
     exit 1
 fi
 
-if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT"; then
+if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
     sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
     echo -e "$TIME - Repository '$NAME' removed from $CAT." >> ~/Repository_Manager/logs/repository.log
 else

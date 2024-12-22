@@ -18,15 +18,14 @@ function Check_if_owner() {
 }
 
 function Count_Categories() {
+    REPOSITORIES_COUNT=0
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             REPOSITORIES_COUNT=1
         fi
     done
-    echo "Counted"
 }
 
-REPOSITORIES_COUNT=0
 Count_Categories
 
 text="Your categories and repositories structure : \n\n"
