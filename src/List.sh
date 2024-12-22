@@ -5,7 +5,7 @@ if [[ "$1" != "" ]]; then
         echo -e "Usage: prog -list\n"
         exit 0
     else
-        echo -e "Wrong option\n"
+        echo -e "Wrong option : Usage -> prog -list\n"
     fi
 fi
 
@@ -18,10 +18,9 @@ function Check_if_owner() {
 }
 
 function Count_Categories() {
-    COUNT=0
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
-        if [[ $(basename "$cat") != ".Update_All" ]]; then
-            COUNT=+1
+        if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
+            COUNT=1
         fi
     done
     return $COUNT
@@ -29,8 +28,7 @@ function Count_Categories() {
 
 text="Your categories and repositories structure : \n\n"
 
-#Count=$(Count_Categories)
-#if [[ $Count > 0 ]]; then
+if [[ $(Count_Categories) ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             cat_basename=$(basename "$cat")
@@ -47,8 +45,8 @@ text="Your categories and repositories structure : \n\n"
             text+="\n"
         fi
     done
-#else
-#    text+="     You don't have any category yet\n"
-#fi
+else
+    text+="     You don't have any category yet\n"
+fi
 
 echo -e "$text"
