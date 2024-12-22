@@ -29,6 +29,8 @@ function Count_Categories() {
 
 text="Your categories and repositories structure : \n\n"
 
+echo $(Count_Categories)
+echo $(Count_Categories > 0)
 if [[ $(Count_Categories) > 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
