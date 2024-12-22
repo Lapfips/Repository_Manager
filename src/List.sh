@@ -31,7 +31,7 @@ Count_Categories
 
 text="Your categories and repositories structure : \n\n"
 
-if [[ $(Count_Categories) > 0 ]]; then
+if [[ $REPOSITORIES_COUNT != 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             cat_basename=$(basename "$cat")
