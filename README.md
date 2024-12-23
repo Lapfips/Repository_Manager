@@ -79,6 +79,7 @@ How to use my program ? After having parametred the program you should be able t
 | `prog -cat`  | Manage categories for repositories.             |
 | `prog -repo` | Manage repositories.                            |
 | `prog -list` | Show you categories and repositories structure. |
+| `prog -log`  | Display the logs for a specific file            |
 | `prog -help` | Display help for commands or options.           |
 
 ### Update
@@ -122,3 +123,12 @@ Manage repositories in categories :
 | `prog -repo -rm <category_name> <repository_name>`  | Remove repository from specific category. |
 | `prog -repo -list`                                  | Show categories available.                |
 | `prog -repo -help`                                  | Display help for commands or options.     |
+
+### Log
+
+Display the log file with colors :
+
+| Command                     | Description                           |
+| --------------------------- | ------------------------------------- |
+| `prog -log <Log_file_name>` | Show logs from a specific file.       |
+| `prog -log -help`           | Display help for commands or options. |

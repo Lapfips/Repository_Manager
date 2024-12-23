@@ -13,12 +13,14 @@ case $FUNC in
     -cat) FUNC="Category" ;;
     -repo) FUNC="Repository" ;;
     -list) FUNC="List" ;;
+    -log) FUNC="Log" ;;
     -help) echo -e "\nUsage prog <option>\n
         Options:\n
         -upt  -> Update a repostory or a category of repostitory
         -cat  -> Add or remove a category to your manager
         -repo -> Add or remove a repository to a choosed category
-        -list -> List all your categories and repositories\n"
+        -list -> List all your categories and repositories
+        -log  -> Display logs from a specific file\n"
         exit 0
         ;;
     *)  echo -e "\nInvalid parameter. Try again" 
