@@ -4,6 +4,7 @@ RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
 CYAN=$(tput setaf 6)
+BOLD=$(tput bold)
 NC=$(tput sgr0)
 
 if [[ "$1" == "-help" ]]; then
