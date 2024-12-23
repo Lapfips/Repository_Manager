@@ -7,18 +7,6 @@ CYAN=$(tput setaf 6)
 BOLD=$(tput bold)
 NC=$(tput sgr0)
 
-function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
-    COUNT="0"
-    for repo in $(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*); do
-        COUNT+="0"
-    done
-    if [[ "$COUNT" == "000"* ]]; then
-        LOG_FILE_NAME="TRUE"
-    else
-        LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
-    fi
-}
-
 if [[ "$1" == "-help" ]]; then
     echo -e "Usage : prog -log <log_file_name>"
 else
@@ -29,10 +17,22 @@ else
     fi
 fi
 
-if [[ ! -f "Repository_Manager/logs/$LOG_FILE_NAME"* ]]; then
-    echo -e "Wrong log file name try again.\n"
-    exit 1
-fi
+function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
+    COUNT="0"
+    for repo in $(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"* 2>/dev/null); do
+        COUNT+="0"
+    done
+    if [[ "$COUNT" == "000"* ]]; then
+        LOG_FILE_NAME="TRUE"
+    else
+        if [[ "$COUNT" == "0" ]]; then
+            echo -e "Wrong log file name try again.\n"
+            exit 1
+        else
+            LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
+        fi
+    fi
+}
 
 IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING
 
