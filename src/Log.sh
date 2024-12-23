@@ -11,7 +11,6 @@ if [[ "$1" == "-help" ]]; then
 else
     if [[ -z "$1" ]]; then
         read -p "Enter the log file name you want to display : " LOG_FILE_NAME
-        echo
     else
         LOG_FILE_NAME="$1"
     fi
@@ -31,7 +30,7 @@ function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
 
 IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING
 
-LOG_INFO_MESSAGE="Logs from your $(basename $LOG_FILE_NAME) file :\n\n"
+LOG_INFO_MESSAGE="${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}"
 
 if [[ $LOG_FILE_NAME != "TRUE" ]]; then
     while IFS= read -r line; do
@@ -42,7 +41,10 @@ if [[ $LOG_FILE_NAME != "TRUE" ]]; then
             *) LOG_INFO_MESSAGE+="$line\n" ;;
         esac
     done < "$LOG_FILE_NAME"
+    if [[ "$LOG_INFO_MESSAGE" == "${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}" ]]; then
+        LOG_INFO_MESSAGE+="${RED}You don't have any log yet.\n${NC}"
+    fi
     echo -e $LOG_INFO_MESSAGE
 else
-    echo -e "Wrong log file name"
+    echo -e "Wrong log file name try again.\n"
 fi
