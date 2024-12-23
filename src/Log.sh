@@ -36,9 +36,9 @@ if [[ $LOG_FILE_NAME != "TRUE" ]]; then
     while IFS= read -r line; do
         case "$line" in
             *"succesfully"*) LOG_INFO_MESSAGE+="${GREEN}$line\n${NC}" ;;
-            *"already"*) LOG_INFO_MESSAGE+="${YELLOW}$line\n${NC}" ;;
+            *"already"*|*"No changes"*|*"Keeping"*) LOG_INFO_MESSAGE+="${YELLOW}$line\n${NC}" ;;
             *"failed"*) LOG_INFO_MESSAGE+="${RED}$line\n${NC}" ;;
-            *) LOG_INFO_MESSAGE+="${CYAN}$line\n${NC}" ;;
+            *) LOG_INFO_MESSAGE+="$line\n" ;;
         esac
     done < "$LOG_FILE_NAME"
     echo -e $LOG_INFO_MESSAGE
