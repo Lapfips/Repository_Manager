@@ -11,6 +11,7 @@ if [[ "$1" == "-help" ]]; then
 else
     if [[ -z "$1" ]]; then
         read -p "Enter the log file name you want to display : " LOG_FILE_NAME
+        echo
     else
         LOG_FILE_NAME="$1"
     fi
@@ -35,7 +36,7 @@ LOG_INFO_MESSAGE="Logs from your $(basename $LOG_FILE_NAME) file :\n\n"
 if [[ $LOG_FILE_NAME != "TRUE" ]]; then
     while IFS= read -r line; do
         case "$line" in
-            *"succesfully"*) LOG_INFO_MESSAGE+="${GREEN}$line\n${NC}" ;;
+            *"successfully"*) LOG_INFO_MESSAGE+="${GREEN}$line\n${NC}" ;;
             *"already"*|*"No changes"*|*"Keeping"*) LOG_INFO_MESSAGE+="${YELLOW}$line\n${NC}" ;;
             *"failed"*) LOG_INFO_MESSAGE+="${RED}$line\n${NC}" ;;
             *) LOG_INFO_MESSAGE+="$line\n" ;;
