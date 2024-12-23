@@ -25,7 +25,12 @@ function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
     if [[ "$COUNT" == "000"* ]]; then
         LOG_FILE_NAME="TRUE"
     else
-        LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
+        if [[ "$COUNT" == "0" ]]; then
+            echo -e "Wrong log file name try again.\n"
+            exit 1
+        else
+            LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
+        fi
     fi
 }
 
@@ -47,5 +52,5 @@ if [[ $LOG_FILE_NAME != "TRUE" ]]; then
     fi
     echo -e $LOG_INFO_MESSAGE
 else
-    echo -e "Wrong log file name try again.\n"
+    echo -e "Too much log file name corresponding try again.\n"
 fi
