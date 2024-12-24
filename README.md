@@ -6,7 +6,7 @@ Hi, my name is Ethan, I'm a french second year student and I created this reposi
 
 ## Configuration
 
-To configure the repository manager on your pc you just need to copy paste the code bellow in a file named `main.sh` then give it rights with `chmod +x main.sh` finally execute the file `./main.sh` then follow the configuration steps in the program.
+To configure the repository manager on your pc you just need to copy paste the code bellow in a file named `main.sh` then give it rights with `chmod +x main.sh` finally execute the file `. main.sh` then follow the configuration steps in the program.
 
 ```bash
 #!/bin/bash
