@@ -117,6 +117,6 @@ else
     echo -e "$TIME - File .bash_profile created successfully." >> ~/Repository_Manager/logs/configuration.log
 fi
 
-echo -e "${GREEN}\nSetup execution completed successfully.\n
-${NC}${BOLD}Enter ${YELLOW}'. .bash_profile'${NC}${BOLD} to initialize your profile.\n${NC}"
+echo -e "${GREEN}\nSetup execution completed successfully.\n${NC}"
+#${BOLD}Enter ${YELLOW}'. .bash_profile'${NC}${BOLD} to initialize your profile.\n${NC}"
 echo -e "$TIME - Setup execution completed successfully." >> ~/Repository_Manager/logs/configuration.log
