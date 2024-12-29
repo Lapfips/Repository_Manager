@@ -131,4 +131,6 @@ Display the log file with colors :
 | Command                     | Description                           |
 | --------------------------- | ------------------------------------- |
 | `prog -log <Log_file_name>` | Show logs from a specific file.       |
+| `prog -log -a`              | Show logs from all files.             |
+| `prog -log --all`           | Show logs from all files.             |
 | `prog -log -help`           | Display help for commands or options. |
