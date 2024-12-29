@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+CYAN=$(tput setaf 6)
+BOLD=$(tput bold)
+NC=$(tput sgr0)
+
 if [[ "$1" != "" ]]; then
     if [[ "$1" == "-help" ]]; then
         echo -e "Usage: prog -list\n"
@@ -28,7 +35,7 @@ function Count_Categories() {
 
 Count_Categories
 
-text="Your categories and repositories structure : \n\n"
+text="${BOLD}Your categories and repositories structure : \n\n${NC}"
 
 if [[ $REPOSITORIES_COUNT != 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
@@ -48,7 +55,7 @@ if [[ $REPOSITORIES_COUNT != 0 ]]; then
         fi
     done
 else
-    text+="     You don't have any category yet\n"
+    text+="${RED}     You don't have any category yet\n${NC}"
 fi
 
 echo -e "$text"

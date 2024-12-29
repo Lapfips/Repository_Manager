@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+CYAN=$(tput setaf 6)
+BOLD=$(tput bold)
+NC=$(tput sgr0)
+
 function Count_Repositories() {
     COUNT=0
     for repo in $(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"); do
@@ -26,7 +33,7 @@ if [[ "$1" != "" ]]; then
     else
         CAT="$1"
         if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" && "$CAT" != "All" ]]; then
-            text="Your categories structure : \n\n"
+            text="${BOLD}Your categories structure : \n\n${NC}"
         else
             echo -e "Error: This category name does not exist -> $CAT\n"
             exit 1
@@ -48,7 +55,7 @@ if [[ $Count > 0 ]]; then
         fi
     done
 else
-    text+="     You don't have any repositories in this category\n"
+    text+="${RED}     You don't have any repositories in this category\n${NC}"
 fi
 
 echo -e "$text"
