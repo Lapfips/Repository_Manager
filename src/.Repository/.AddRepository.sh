@@ -2,7 +2,7 @@
 
 TIME="[$(date +"%Y-%m-%d %T")]"
 
-if [[ "$1" = "-help" ]]; then
+if [[ "$1" == "-help" ]]; then
     echo -e "\nUsage prog -repo -add <category_name> <repository_name>\n"
     exit 0
 else

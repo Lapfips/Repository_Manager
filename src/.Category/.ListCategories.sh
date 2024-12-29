@@ -28,7 +28,7 @@ function Count_Categories() {
 
 Count_Categories
 
-text="${BOLD}Your categories structure : \n\n${NC}"
+text="${BOLD}\nYour categories structure : \n\n${NC}"
 
 if [[ $REPOSITORIES_COUNT != 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do

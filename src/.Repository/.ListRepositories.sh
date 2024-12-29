@@ -21,8 +21,7 @@ function Count_Repositories() {
 function Check_if_owner() {
     USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
     if [[ $1 == "$USER_PSEUDO"/* ]]; then
-        repo="$1"
-        repo=${repo#"$USER_PSEUDO/"}
+        repo=${$1#"$USER_PSEUDO/"}
     fi
 }
 
@@ -33,7 +32,7 @@ if [[ "$1" != "" ]]; then
     else
         CAT="$1"
         if [[ -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" && "$CAT" != "All" ]]; then
-            text="${BOLD}Your categories structure : \n\n${NC}"
+            text="${BOLD}\nYour categories structure : \n\n${NC}"
         else
             echo -e "Error: This category name does not exist -> $CAT\n"
             exit 1
