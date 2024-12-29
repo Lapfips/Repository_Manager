@@ -15,7 +15,6 @@ function Count_Repositories() {
             COUNT+=1
         fi
     done
-    return $COUNT
 }
 
 function Check_if_owner() {
@@ -44,8 +43,9 @@ else
     exit 1
 fi
 
-Count=$(Count_Repositories)
-if [[ $Count != "0" ]]; then
+Count_Repositories
+
+if [[ $COUNT != "0" ]]; then
     text+="     "$CAT" : \n"
     repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh")
     for repo in $repositories; do
