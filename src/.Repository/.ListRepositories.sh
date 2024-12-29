@@ -45,7 +45,7 @@ else
 fi
 
 Count=$(Count_Repositories)
-if [[ $Count > 0 ]]; then
+if [[ $Count != "0" ]]; then
     text+="     "$CAT" : \n"
     repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh")
     for repo in $repositories; do
