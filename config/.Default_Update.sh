@@ -3,19 +3,25 @@
 TIME="[$(date +"%Y-%m-%d %T")]"
 
 function Is_Repository() {
-    COUNT=0
-    REPOSITORY_NAME="$2"
+    Is_Repository="FALSE"
+    REPOSITORY_NAME="$1"
     USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
     for repo in "${repositories[@]}"; do
         if [[ $REPOSITORY_NAME == $repo ]]; then
-            COUNT+=1
+            Is_Repository="TRUE"
         else
             if [[ $REPOSITORY_NAME == ${repo#"$USER_PSEUDO/"} ]]; then
-                COUNT+=1
+                Is_Repository="TRUE" 
             fi
         fi
     done
-    return $COUNT
+    return $Is_Repository
+}
+
+function Update() {
+    echo "Updating $1"
+    ./Repository_Manager/src/.Update/.Update_Repo.sh "$1" "$2" "$3"
+    echo -e "$TIME - Repository $1 updated successfully." >> ~/Repository_Manager/logs/update.log
 }
 
 github="git@github.com:"
@@ -24,28 +30,22 @@ repositories=( )
 if [[ "$1" == "auto" ]]; then
     for repo in "${repositories[@]}"; do
         commit="auto"
-        echo "Updating $repo"
-        ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
-        echo -e "$TIME - Repository $repo updated successfully." >> ~/Repository_Manager/logs/update.log
+        Update "$repo" "$github" "$commit"
     done
 fi
 
 if [[ -z "$1" ]]; then
     for repo in "${repositories[@]}"; do
-        echo "Updating $repo"
-        ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github"
+        Update "$repo" "$github" "$commit"
     done
 else
-    is_there_repository=$(Is_Repository $1)
-    if [[ $is_there_repository == 1 ]];then
+    if [[ $(Is_Repository $1) ]];then
         if [[ "$2" == "auto" ]]; then
             commit="auto"
-            echo "Updating $repo"
-            ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
+            Update "$repo" "$github" "$commit"
         else
             commit="$2"
-            echo "Updating $repo"
-            ./Repository_Manager/src/.Update/.Update_Repo.sh "$repo" "$github" "$commit"
+            Update "$repo" "$github" "$commit"
         fi
     else
         echo -e "Wrong repository name\n"
