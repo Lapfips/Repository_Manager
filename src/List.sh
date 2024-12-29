@@ -43,7 +43,7 @@ if [[ $REPOSITORIES_COUNT != 0 ]]; then
             cat_basename=$(basename "$cat")
             cat=${cat_basename#".Update_"}
             cat=${cat%".sh"}
-            text+="     "$cat" : \n"
+            text+="${CYAN}     "$cat" : \n${NC}"
             repositories=$(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$cat.sh")
             for repo in $repositories; do
                 if [[ $repo != *")"* ]]; then
