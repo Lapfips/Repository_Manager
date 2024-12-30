@@ -11,6 +11,9 @@ if [[ "$1" == "-help" ]]; then
     echo -e "Usage : prog -log <log_file_name>"
 else
     if [[ -z "$1" ]]; then
+        echo -e "\nYour log files : \n"
+        for repo in $(ls -Sa "Repository_Manager/log"); do
+            echo -e "$(basname $repo)\n"
         read -p "Enter the log file name you want to display : " LOG_FILE_NAME
     else
         LOG_FILE_NAME="$1"
@@ -41,10 +44,9 @@ LOG_INFO_MESSAGE="${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n$
 if [[ $LOG_FILE_NAME != "TRUE" ]]; then
     while IFS= read -r line; do
         case "$line" in
-            *"successfully"*) LOG_INFO_MESSAGE+="${GREEN}$line\n${NC}" ;;
-            *"already"*|*"No changes"*|*"Keeping"*) LOG_INFO_MESSAGE+="${YELLOW}$line\n${NC}" ;;
-            *"failed"*) LOG_INFO_MESSAGE+="${RED}$line\n${NC}" ;;
-            *) LOG_INFO_MESSAGE+="$line\n" ;;
+            *"successfully"*|*"added"*) LOG_INFO_MESSAGE+="${GREEN}$line\n${NC}" ;;
+            *"failed"*|*"removed"*) LOG_INFO_MESSAGE+="${RED}$line\n${NC}" ;;
+            *) LOG_INFO_MESSAGE+="${YELLOW}$line\n${NC}" ;;
         esac
     done < "$LOG_FILE_NAME"
     if [[ "$LOG_INFO_MESSAGE" == "${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}" ]]; then
