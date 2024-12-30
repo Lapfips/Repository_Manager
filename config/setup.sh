@@ -10,7 +10,7 @@ BOLD=$(tput bold)
 TIME="[$(date +"%Y-%m-%d %T")]"
 
 # Log file location
-LOG_FILE="~/Repository_manager/logs/configuration.log"
+LOG_FILE="~/Repository_Manager/logs/configuration.log"
 
 # Function to log messages
 log_message() {
@@ -95,35 +95,35 @@ else
     log_message "${GREEN}.gitconfig file created successfully.${NC}" ".gitconfig created successfully."
 fi
 
-# Configuring and executing .bashrc accorded to the user choice
-log_message "${YELLOW}\nChecking for .bashrc file...${NC}" "Checking for .bashrc file..."
-if [[ -f "$HOME/.bashrc" ]]; then
-    echo -e "${BOLD}Current content of your .bashrc file:${NC}"
-    cat "$HOME/.bashrc"
+# Configuring and executing .bash_profile accorded to the user choice
+log_message "${YELLOW}\nChecking for .bash_profile file...${NC}" "Checking for .bash_profile file..."
+if [[ -f "$HOME/.bash_profile" ]]; then
+    echo -e "${BOLD}Current content of your .bash_profile file:${NC}"
+    cat "$HOME/.bash_profile"
     while true; do
-        read -p "${CYAN}Do you want to overwrite your .bashrc? (y or n): ${NC} " CHOICE
+        read -p "${CYAN}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
-                cp ~/Repository_manager/config/.bashrc "$HOME/.bashrc"
-                log_message "${GREEN}.bashrc has been updated successfully.${NC}" ".bashrc updated successfully."
+                cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
+                log_message "${GREEN}.bash_profile has been updated successfully.${NC}" ".bash_profile updated successfully."
                 break ;;
             [Nn]*)
-                log_message "${GREEN}No changes were made to your .bashrc file.${NC}" "No changes made to .bashrc."
+                log_message "${GREEN}No changes were made to your .bash_profile file.${NC}" "No changes made to .bash_profile."
                 break ;;
             *)
-                log_message "${RED}Please answer y or n.${NC}" "Invalid response for .bashrc overwrite choice." ;;
+                log_message "${RED}Please answer y or n.${NC}" "Invalid response for .bash_profile overwrite choice." ;;
         esac
     done
 else
-    log_message "${YELLOW}Creating a new .bashrc...${NC}" "No .bashrc file found. Creating one..."
-    cp ~/Repository_manager/config/.bashrc "$HOME/.bashrc"
-    log_message "${GREEN}.bashrc file created successfully.${NC}" ".bashrc created successfully."
+    log_message "${YELLOW}Creating a new .bash_profile...${NC}" "No .bash_profile file found. Creating one..."
+    cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
+    log_message "${GREEN}.bash_profile file created successfully.${NC}" ".bash_profile created successfully."
 fi
 
-# Automatically source .bashrc
-log_message "${YELLOW}Sourcing the .bash_profile...${NC}" "Sourcing the .bashrc..."
-source "$HOME/.bashrc" || {
-    log_message "${RED}Failed to source .bashrc. Ensure it is valid.${NC}" "Failed to source .bashrc."
+# Automatically source .bash_profile
+log_message "${YELLOW}Sourcing the .bash_profile...${NC}" "Sourcing the .bash_profile..."
+source "$HOME/.bash_profile" || {
+    log_message "${RED}Failed to source .bash_profile. Ensure it is valid.${NC}" "Failed to source .bash_profile."
 }
 
 log_message "${GREEN}\nSetup execution completed successfully.\n${NC}" "Setup execution completed successfully."
