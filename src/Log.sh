@@ -12,7 +12,7 @@ if [[ "$1" == "-help" ]]; then
 else
     if [[ "$1" == "-a" || "$1" == "--all" ]]; then
         for repo in $(ls "Repository_Manager/logs"); do
-            $(prog -log $(basename $repo))
+            ./Repository_Manager/src/Log.sh -log $(basename $repo)
         done
     else
         if [[ -z "$1" ]]; then
