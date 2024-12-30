@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Colors
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -8,7 +7,6 @@ CYAN=$(tput setaf 6)
 BOLD=$(tput bold)
 NC=$(tput sgr0)
 
-# Check if there is at least one categories corresponding
 function Count_Repositories() {
     COUNT=0
     for repo in $(sed -n 's/repositories=( //p' "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"); do
@@ -18,7 +16,6 @@ function Count_Repositories() {
     done
 }
 
-# Check if owner
 function Check_if_owner() {
     USER_PSEUDO=$(sed -n 's/^.*name = //p' .gitconfig)
     if [[ $1 == "$USER_PSEUDO"/* ]]; then
@@ -27,7 +24,6 @@ function Check_if_owner() {
     fi
 }
 
-# Check parameters
 if [[ "$1" != "" ]]; then
     if [[ "$1" == "-help" ]]; then
         echo -e "Usage: prog -repo -list <category_name>\n"

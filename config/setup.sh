@@ -9,63 +9,54 @@ NC=$(tput sgr0)
 BOLD=$(tput bold)
 TIME="[$(date +"%Y-%m-%d %T")]"
 
-# Log file location
-LOG_FILE="Repository_Manager/logs/configuration.log"
-
-# Function to log messages
-log_message() {
-    echo -e "$1"
-    echo -e "$TIME" - "$2" >> "$LOG_FILE"
-}
-
 # Ensuring Git installation
-log_message "${YELLOW}\nChecking for Git installation...${NC}" "Checking for Git installation..."
+echo -e "${YELLOW}\nChecking for Git installation...${NC}"
 if ! command -v git &> /dev/null; then
-    log_message "${YELLOW}Git is not installed. Installing Git...\n${NC}" "Git not found. Attempting to install..."
+    echo -e "${YELLOW}Git is not installed. Installing Git...\n${NC}"
     sudo apt update && sudo apt install -y git || {
-        log_message "${RED}Failed to install Git. Exiting.${NC}" "Failed to install Git."
+        echo -e "${RED}Failed to install Git. Exiting.${NC}"
+        echo -e "$TIME - Failed to install Git." >> ~/Repository_Manager/logs/configuration.log
         exit 1
     }
-    log_message "${GREEN}Git successfully installed.${NC}" "Git successfully installed."
+    echo -e "${GREEN}Git successfully installed.${NC}" 
+    echo -e "$TIME - Git successfully installed." >> ~/Repository_Manager/logs/configuration.log
 else
-   log_message "${GREEN}Git is already installed.${NC}" "Git already installed."
+    echo -e "${GREEN}Git is already installed.${NC}"
+    echo -e "$TIME - Git already installed." >> ~/Repository_Manager/logs/configuration.log
 fi
 
 # SSH Key generation accorded to the user choice
-log_message "${YELLOW}\nChecking for SSH key...${NC}" "Checking for SSH key..."
+echo -e "${YELLOW}\nChecking for SSH key...${NC}"
 if [[ -d "$HOME/.ssh" ]]; then
     while true; do
         read -p "${CYAN}An SSH key already exists. Do you want to overwrite it? (y or n): ${NC} " SSH_KEY
         case $SSH_KEY in
             [Yy]*)
-                ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N "" || {
-                    log_message "${RED}Failed to create SSH key.${NC}" "Failed to create SSH key."
-                    exit 1
-                }
-                log_message "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}" "New SSH key successfully created."
-                log_message "${GREEN}Paste this key on your GitHub profile --> https://github.com/settings/keys${NC}" \
-                            "Instructed user to add SSH key to GitHub."
+                ssh-keygen -t ed25519
+                echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
+                echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
+                echo -e "${GREEN}New SSH key successfully created.${NC}"
+                echo -e "$TIME - New SSH key successfully created." >> ~/Repository_Manager/logs/configuration.log
                 break ;;
             [Nn]*)
-                log_message "${GREEN}Keeping existing SSH key.${NC}" "Keeping existing SSH key."
+                echo -e "${GREEN}Keeping existing SSH key.${NC}"
+                echo -e "$TIME - Keeping existing SSH key." >> ~/Repository_Manager/logs/configuration.log
                 break ;;
             *)
-                log_message "${RED}Please answer y or n.${NC}" "Invalid response for SSH key overwrite choice." ;;
+                echo -e "${RED}Please answer y or n.${NC}" ;;
         esac
     done
 else
-    log_message "${YELLOW}Creating a new SSH key...${NC}" "No existing SSH key found. Creating a new one..."
-    ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519" -N "" || {
-        log_message "${RED}Failed to create SSH key.${NC}" "Failed to create SSH key."
-        exit 1
-    }
-    log_message "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}" "New SSH key successfully created."
-    log_message "${GREEN}Paste this key on your GitHub profile --> https://github.com/settings/keys${NC}" \
-                "Instructed user to add SSH key to GitHub."
+    echo -e "${YELLOW}Creating a new SSH key...${NC}"
+    ssh-keygen -t ed25519
+    echo -e "${BOLD}\n$(cat $HOME/.ssh/id_ed25519.pub)${NC}"
+    echo -e "${GREEN}\nPaste this key on your GitHub profile --> https://github.com/settings/keys${NC}"
+    echo -e "${GREEN}New SSH key successfully created.${NC}"
+    echo -e "$TIME - New SSH key successfully created." >> ~/Repository_Manager/logs/configuration.log
 fi
 
 # Configuring .gitconfig accorded to the user choice
-log_message "${YELLOW}\nChecking for .gitconfig file...${NC}" "Checking for .gitconfig file..."
+echo -e "${YELLOW}\nChecking for .gitconfig file...${NC}"
 if [[ -f "$HOME/.gitconfig" ]]; then
     echo -e "${BOLD}Current content of your .gitconfig file:${NC}"
     cat "$HOME/.gitconfig"
@@ -77,26 +68,29 @@ if [[ -f "$HOME/.gitconfig" ]]; then
                 read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
                 git config --global user.name "$NAME"
                 git config --global user.email "$EMAIL"
-                log_message "${GREEN}.gitconfig has been updated successfully.${NC}" ".gitconfig updated successfully."
+                echo -e "${GREEN}.gitconfig has been updated successfully.${NC}"
+                echo -e "$TIME - File .gitconfig updated successfully." >> ~/Repository_Manager/logs/configuration.log
                 break ;;
             [Nn]*)
-                log_message "${GREEN}No changes were made to your .gitconfig file.${NC}" "No changes made to .gitconfig."
+                echo -e "${GREEN}No changes were made to your .gitconfig file.${NC}"
+                echo -e "$TIME - No changes were made to .gitconfig file." >> ~/Repository_Manager/logs/configuration.log
                 break ;;
             *)
-                log_message "${RED}Please answer y or n.${NC}" "Invalid response for .gitconfig overwrite choice." ;;
+                echo -e "${RED}Please answer y or n.${NC}" ;;
         esac
     done
 else
-    log_message "${YELLOW}Creating a new .gitconfig file...${NC}" "No .gitconfig file found. Creating one..."
+    echo -e "${YELLOW}Creating a new .gitconfig file...${NC}"
     read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
     read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
     git config --global user.name "$NAME"
     git config --global user.email "$EMAIL"
-    log_message "${GREEN}.gitconfig file created successfully.${NC}" ".gitconfig created successfully."
+    echo -e "${GREEN}.gitconfig file created successfully.${NC}"
+    echo -e "$TIME - File .gitconfig created successfully." >> ~/Repository_Manager/logs/configuration.log
 fi
 
 # Configuring and executing .bash_profile accorded to the user choice
-log_message "${YELLOW}\nChecking for .bash_profile file...${NC}" "Checking for .bash_profile file..."
+echo -e "${YELLOW}\nChecking for .bash_profile file...${NC}"
 if [[ -f "$HOME/.bash_profile" ]]; then
     echo -e "${BOLD}Current content of your .bash_profile file:${NC}"
     cat "$HOME/.bash_profile"
@@ -104,26 +98,24 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         read -p "${CYAN}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
-                cp Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
-                log_message "${GREEN}.bash_profile has been updated successfully.${NC}" ".bash_profile updated successfully."
+                cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
+                echo -e "${GREEN}.bash_profile has been updated successfully.${NC}"
+                echo -e "$TIME - File .bash_profile updated successfully." >> ~/Repository_Manager/logs/configuration.log
                 break ;;
             [Nn]*)
-                log_message "${GREEN}No changes were made to your .bash_profile file.${NC}" "No changes made to .bash_profile."
+                echo -e "${GREEN}No changes were made to your .bash_profile file.${NC}"
+                echo -e "$TIME - No changes were made to .bash_profile file." >> ~/Repository_Manager/logs/configuration.log
                 break ;;
             *)
-                log_message "${RED}Please answer y or n.${NC}" "Invalid response for .bash_profile overwrite choice." ;;
+                echo -e "${RED}Please answer y or n.${NC}" ;;
         esac
     done
 else
-    log_message "${YELLOW}Creating a new .bash_profile...${NC}" "No .bash_profile file found. Creating one..."
-    cp Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
-    log_message "${GREEN}.bash_profile file created successfully.${NC}" ".bash_profile created successfully."
+    echo -e "${YELLOW}Creating a new .bash_profile...${NC}"
+    cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
+    echo -e "${GREEN}.bash_profile file created successfully.${NC}"
+    echo -e "$TIME - File .bash_profile created successfully." >> ~/Repository_Manager/logs/configuration.log
 fi
 
-# Automatically source .bash_profile
-log_message "${YELLOW}Sourcing the .bash_profile...${NC}" "Sourcing the .bash_profile..."
-source "$HOME/.bash_profile" || {
-    log_message "${RED}Failed to source .bash_profile. Ensure it is valid.${NC}" "Failed to source .bash_profile."
-}
-
-log_message "${GREEN}\nSetup execution completed successfully.\n${NC}" "Setup execution completed successfully."
+echo -e "${GREEN}\nSetup execution completed successfully.\n${NC}${BOLD}Enter ${YELLOW}'. .bash_profile'${NC}${BOLD} to initialize your profile.\n${NC}"
+echo -e "$TIME - Setup execution completed successfully." >> ~/Repository_Manager/logs/configuration.log

@@ -66,7 +66,6 @@ cd Repository_Manager && echo -e "${GREEN}Program launched${NC}" || {
     exit 1
 }
 ./config/setup.sh || echo -e "${RED}\nFailed to execute the setup.${NC}"
-source ~/.bash_profile
 ```
 
 ## Documentation

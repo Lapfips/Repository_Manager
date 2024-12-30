@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Colors
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -8,17 +7,6 @@ CYAN=$(tput setaf 6)
 BOLD=$(tput bold)
 NC=$(tput sgr0)
 
-# Check if there is at least one categories corresponding
-function Count_Categories() {
-    REPOSITORIES_COUNT=0
-    for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
-        if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
-            REPOSITORIES_COUNT=1
-        fi
-    done
-}
-
-# Check for parameters
 if [[ "$1" != "" ]]; then
     if [[ "$1" == "-help" ]]; then
         echo -e "Usage: prog -cat -list\n"
@@ -29,11 +17,19 @@ if [[ "$1" != "" ]]; then
     fi
 fi
 
+function Count_Categories() {
+    REPOSITORIES_COUNT=0
+    for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
+        if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
+            REPOSITORIES_COUNT=1
+        fi
+    done
+}
+
 Count_Categories
 
 text="${BOLD}\nYour categories structure : \n\n${NC}"
 
-# Add the repo name to the output
 if [[ $REPOSITORIES_COUNT != 0 ]]; then
     for cat in $(ls -a Repository_Manager/src/.Update_Repositories/.Update_*.sh); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then

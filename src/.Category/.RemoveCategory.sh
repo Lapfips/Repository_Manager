@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Colors
 TIME="[$(date +"%Y-%m-%d %T")]"
 
 # Check for arguments
@@ -16,8 +15,8 @@ else
     fi
 fi
 
-# Ask twice to remove the category
 read -p "Do you really want to remove your $CAT category ? (y/n) : " USER_CHOICE
+
 case $USER_CHOICE in
     [Yy])
         if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
