@@ -2,7 +2,7 @@
 
 TIME="[$(date +"%Y-%m-%d %T")]"
 
-if [[ "$1" = "-help" ]]; then
+if [[ "$1" == "-help" ]]; then
     echo -e "\nUsage porg -repo -rm <category_name> <repository_name>\n"
     exit 0
 else
@@ -23,12 +23,12 @@ if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; the
     exit 1
 fi
 
+if grep -q "$(sed -n 's/^.*name = //p' .gitconfig)/$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
+    NAME="$(sed -n 's/^.*name = //p' .gitconfig)/$NAME"
+fi
+
 if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
-    if grep -q "$(sed -n 's/^.*name = //p' .gitconfig)/$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
-        sed -i "/repositories=( / s#$(sed -n 's/^.*name = //p' .gitconfig)/$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
-    else
-        sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
-    fi
+    sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
     echo -e "$TIME - Repository '$NAME' removed from $CAT." >> ~/Repository_Manager/logs/repository.log
 else
     echo -e "\nRepository '$NAME' does not exist in $CAT."

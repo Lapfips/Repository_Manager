@@ -10,15 +10,21 @@ NC=$(tput sgr0)
 if [[ "$1" == "-help" ]]; then
     echo -e "Usage : prog -log <log_file_name>"
 else
-    if [[ -z "$1" ]]; then
-        echo -e "\nYour log files : \n"
+    if [[ "$1" == "-a" || "$1" == "--all" ]]; then
         for repo in $(ls "Repository_Manager/logs"); do
-            echo -e "$(basename $repo)"
+            $(prog -log $(basename $repo))
         done
-        echo
-        read -p "Enter the log file name you want to display : " LOG_FILE_NAME
     else
-        LOG_FILE_NAME="$1"
+        if [[ -z "$1" ]]; then
+            echo -e "\nYour log files : \n"
+            for repo in $(ls "Repository_Manager/logs"); do
+                echo -e "$(basename $repo)"
+            done
+            echo
+            read -p "Enter the log file name you want to display : " LOG_FILE_NAME
+        else
+            LOG_FILE_NAME="$1"
+        fi
     fi
 fi
 
