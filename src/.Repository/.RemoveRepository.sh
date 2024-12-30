@@ -24,7 +24,11 @@ if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; the
 fi
 
 if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
-    sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
+    if grep -q "$(sed -n 's/^.*name = //p' .gitconfig)/$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
+        sed -i "/repositories=( / s#$(sed -n 's/^.*name = //p' .gitconfig)/$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
+    else
+        sed -i "/repositories=( / s#$NAME ##" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
+    fi
     echo -e "$TIME - Repository '$NAME' removed from $CAT." >> ~/Repository_Manager/logs/repository.log
 else
     echo -e "\nRepository '$NAME' does not exist in $CAT."
