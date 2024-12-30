@@ -10,7 +10,7 @@ BOLD=$(tput bold)
 TIME="[$(date +"%Y-%m-%d %T")]"
 
 # Log file location
-LOG_FILE="../logs/configuration.log"
+LOG_FILE="~/Repository_manager/logs/configuration.log"
 
 # Function to log messages
 log_message() {
@@ -104,7 +104,7 @@ if [[ -f "$HOME/.bashrc" ]]; then
         read -p "${CYAN}Do you want to overwrite your .bashrc? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
-                cp ../config/.bashrc "$HOME/.bashrc"
+                cp ~/Repository_manager/config/.bashrc "$HOME/.bashrc"
                 log_message "${GREEN}.bashrc has been updated successfully.${NC}" ".bashrc updated successfully."
                 break ;;
             [Nn]*)
@@ -116,12 +116,12 @@ if [[ -f "$HOME/.bashrc" ]]; then
     done
 else
     log_message "${YELLOW}Creating a new .bashrc...${NC}" "No .bashrc file found. Creating one..."
-    cp ../config/.bashrc "$HOME/.bashrc"
+    cp ~/Repository_manager/config/.bashrc "$HOME/.bashrc"
     log_message "${GREEN}.bashrc file created successfully.${NC}" ".bashrc created successfully."
 fi
 
 # Automatically source .bashrc
-log_message "${YELLOW}Sourcing the .bashrc...${NC}" "Sourcing the .bashrc..."
+log_message "${YELLOW}Sourcing the .bash_profile...${NC}" "Sourcing the .bashrc..."
 source "$HOME/.bashrc" || {
     log_message "${RED}Failed to source .bashrc. Ensure it is valid.${NC}" "Failed to source .bashrc."
 }
