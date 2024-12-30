@@ -38,6 +38,7 @@ function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
             exit 1
         else
             LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
+            echo $LOG_FILE_NAME
         fi
     fi
 }
