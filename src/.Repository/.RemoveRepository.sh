@@ -2,7 +2,7 @@
 
 TIME="[$(date +"%Y-%m-%d %T")]"
 
-if [[ "$1" = "-help" ]]; then
+if [[ "$1" == "-help" ]]; then
     echo -e "\nUsage porg -repo -rm <category_name> <repository_name>\n"
     exit 0
 else
@@ -21,6 +21,10 @@ fi
 if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
     exit 1
+fi
+
+if grep -q "$(sed -n 's/^.*name = //p' .gitconfig)/$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
+    NAME="$(sed -n 's/^.*name = //p' .gitconfig)/$NAME"
 fi
 
 if grep -q "$NAME" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then

@@ -24,7 +24,7 @@ case $USER_CHOICE in
             exit 1
         else
             rm "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
-            echo -e "$TIME - The file for category '$CAT' has been removed successfully." >> ~/Repository_Manager/logs/category.log
+            echo -e "$TIME - The file for category '$CAT' has been removed." >> ~/Repository_Manager/logs/category.log
         fi
         ;;
     [Nn])

@@ -12,8 +12,10 @@ if [[ "$1" == "-help" ]]; then
 else
     if [[ -z "$1" ]]; then
         echo -e "\nYour log files : \n"
-        for repo in $(ls -Sa "Repository_Manager/log"); do
-            echo -e "$(basname $repo)\n"
+        for repo in $(ls "Repository_Manager/logs"); do
+            echo -e "$(basename $repo)"
+        done
+        echo
         read -p "Enter the log file name you want to display : " LOG_FILE_NAME
     else
         LOG_FILE_NAME="$1"
