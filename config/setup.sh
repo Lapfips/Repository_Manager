@@ -10,7 +10,7 @@ BOLD=$(tput bold)
 TIME="[$(date +"%Y-%m-%d %T")]"
 
 # Log file location
-LOG_FILE="~/Repository_Manager/logs/configuration.log"
+LOG_FILE="Repository_Manager/logs/configuration.log"
 
 # Function to log messages
 log_message() {
@@ -104,7 +104,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         read -p "${CYAN}Do you want to overwrite your .bash_profile? (y or n): ${NC} " CHOICE
         case $CHOICE in
             [Yy]*)
-                cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
+                cp Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
                 log_message "${GREEN}.bash_profile has been updated successfully.${NC}" ".bash_profile updated successfully."
                 break ;;
             [Nn]*)
@@ -116,7 +116,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
     done
 else
     log_message "${YELLOW}Creating a new .bash_profile...${NC}" "No .bash_profile file found. Creating one..."
-    cp ~/Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
+    cp Repository_Manager/config/.bash_profile "$HOME/.bash_profile"
     log_message "${GREEN}.bash_profile file created successfully.${NC}" ".bash_profile created successfully."
 fi
 
