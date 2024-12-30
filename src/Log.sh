@@ -48,14 +48,14 @@ if [[ "$1" == "-help" ]]; then
 else
     if [[ "$1" == "-a" || "$1" == "--all" ]]; then
         for repo in $(ls "Repository_Manager/logs"); do
-            echo $repo
-            LOG_FILE_NAME=$repo
+            LOG_FILE_NAME="Repository_Manager/logs/$repo"
+            echo $LOG_FILE_NAME
             DISPLAY_LOG
         done
     else
         if [[ -z "$1" ]]; then
             echo -e "\nYour log files : \n"
-            for repo in $(ls "Repository_Manager/logs"); do
+            for repo in $(ls "Repository_Manager/logs/"); do
                 echo -e "$(basename $repo)"
             done
             echo
