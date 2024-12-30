@@ -48,8 +48,8 @@ if [[ "$1" == "-help" ]]; then
 else
     if [[ "$1" == "-a" || "$1" == "--all" ]]; then
         for repo in $(ls "Repository_Manager/logs"); do
-            echo "$(basename $repo)"
-            LOG_FILE_NAME="$(basename $repo)"
+            echo $repo
+            LOG_FILE_NAME=$repo
             DISPLAY_LOG
         done
     else
