@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# Time for logs
 TIME="[$(date +"%Y-%m-%d %T")]"
 
+# Check for parameters
 if [[ "$1" == "-help" ]]; then
     echo -e "\nUsage prog -repo -add <category_name> <repository_name>\n"
     exit 0
@@ -20,6 +22,7 @@ else
     fi
 fi
 
+# Ask for owner
 if [[ $NAME != */* ]]; then
     read -p "Is this your own repository -> $NAME ? (yes/no) : " USER_CHOICE
     case $USER_CHOICE in
@@ -33,11 +36,13 @@ if [[ $NAME != */* ]]; then
     esac
 fi
 
+# Check for category file existance
 if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
     exit 1
 fi
 
+# Remove repo from category
 if grep -q "\"$NAME\"" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
     echo -e "\nRepository '$NAME' already exists in $CAT."
 else

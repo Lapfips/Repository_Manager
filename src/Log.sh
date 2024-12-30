@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Colors
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -31,7 +32,7 @@ function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
         LOG_FILE_NAME="TRUE"
     else
         if [[ "$COUNT" == "0" ]]; then
-            echo -e "Wrong log file name try again.\n"
+            echo -e "${RED}\nWrong log file name try again.\n${NC}"
             exit 1
         else
             LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
