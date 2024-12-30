@@ -120,13 +120,8 @@ else
     log_message "${GREEN}.bash_profile file created successfully.${NC}" ".bash_profile created successfully."
 fi
 
-<<<<<<< HEAD
 source "$HOME/.bash_profile" || {
     log_message "${RED}Failed to source .bash_profile. Ensure it is valid.${NC}" "Failed to source .bash_profile."
 }
 
 log_message "${GREEN}\nSetup execution completed successfully.\n${NC}" "Setup execution completed successfully."
-=======
-echo -e "${GREEN}\nSetup execution completed successfully.\n${NC}${BOLD}Enter ${YELLOW}'. .bash_profile'${NC}${BOLD} to initialize your profile.\n${NC}"
-echo -e "$TIME - Setup execution completed successfully." >> ~/Repository_Manager/logs/configuration.log
->>>>>>> f4b755a557774cf7b082e734556f4de876657c8d
