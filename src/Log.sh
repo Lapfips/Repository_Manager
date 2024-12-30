@@ -8,6 +8,7 @@ BOLD=$(tput bold)
 NC=$(tput sgr0)
 
 function DISPLAY_LOG() {
+    LOG_INFO_MESSAGE="${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}"
     if [[ $LOG_FILE_NAME != "TRUE" ]]; then
         while IFS= read -r line; do
             case "$line" in
@@ -38,7 +39,6 @@ function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
             exit 1
         else
             LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
-            echo $LOG_FILE_NAME
         fi
     fi
 }
@@ -49,7 +49,6 @@ else
     if [[ "$1" == "-a" || "$1" == "--all" ]]; then
         for repo in $(ls "Repository_Manager/logs"); do
             LOG_FILE_NAME="Repository_Manager/logs/$repo"
-            echo $LOG_FILE_NAME
             DISPLAY_LOG
         done
     else
@@ -67,8 +66,6 @@ else
 fi
 
 IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING
-
-LOG_INFO_MESSAGE="${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}"
 
 DISPLAY_LOG
 
