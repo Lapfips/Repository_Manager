@@ -16,7 +16,7 @@ else
 fi
 
 # Define the path to the update repositories
-UPDATE_REPO_DIR="$INSTALL_DIR/.Update_Repositories"
+UPDATE_REPO_DIR="$INSTALL_DIR/src/.Update_Repositories"
 
 # Function to count categories
 Count_Categories() {
