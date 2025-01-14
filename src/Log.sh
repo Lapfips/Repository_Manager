@@ -1,47 +1,50 @@
 #!/bin/bash
 
+# Colors
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
-CYAN=$(tput setaf 6)
-BOLD=$(tput bold)
 NC=$(tput sgr0)
+BOLD=$(tput bold)
 
-if [[ "$1" == "-help" ]]; then
-    echo -e "Usage : prog -log <log_file_name>"
+# Load the installation directory from the config file
+if [ -f "$HOME/.repository_manager_config" ]; then
+    source "$HOME/.repository_manager_config"
 else
-    if [[ -z "$1" ]]; then
-        echo -e "\nYour log files : \n"
-        for repo in $(ls "Repository_Manager/logs"); do
-            echo -e "$(basename $repo)"
-        done
-        echo
-        read -p "Enter the log file name you want to display : " LOG_FILE_NAME
-    else
-        LOG_FILE_NAME="$1"
-    fi
+    INSTALL_DIR="$HOME/Repository_Manager"
 fi
 
-function IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
-    COUNT="0"
-    for repo in $(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"* 2>/dev/null); do
-        COUNT+="0"
-    done
-    if [[ "$COUNT" == "000"* ]]; then
-        LOG_FILE_NAME="TRUE"
+# Function to check if more than one log file corresponds
+IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING() {
+    if [[ $(ls -a "$LOG_DIR/$LOG_FILE_NAME"* | wc -l) -gt 1 ]]; then
+        echo -e "${RED}\nToo many log files correspond. Try again.\n${NC}"
+        exit 1
     else
-        if [[ "$COUNT" == "0" ]]; then
-            echo -e "Wrong log file name try again.\n"
-            exit 1
-        else
-            LOG_FILE_NAME=$(ls -a "Repository_Manager/logs/$LOG_FILE_NAME"*)
-        fi
+        LOG_FILE_NAME=$(ls -a "$LOG_DIR/$LOG_FILE_NAME"*)
     fi
 }
 
-IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING
+# Define the path to the log directory
+LOG_DIR="$INSTALL_DIR/logs"
 
-LOG_INFO_MESSAGE="${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}"
+# Check if a log file name is provided as an argument
+if [[ -z "$1" ]]; then
+    echo
+    read -p "Enter the log file name: " LOG_FILE_NAME
+    echo
+else
+    LOG_FILE_NAME="$1"
+fi
+
+# Validate the log file name
+if [[ ! -f "$LOG_DIR/$LOG_FILE_NAME" ]]; then
+    echo -e "${RED}Wrong log file name. Try again.\n${NC}"
+    exit 1
+else
+    IS_MORE_THAN_ONE_REPOSITORY_CORRESPONDING
+fi
+
+LOG_INFO_MESSAGE="${BOLD}\nLogs from your $(basename "$LOG_FILE_NAME") file :\n\n${NC}"
 
 if [[ $LOG_FILE_NAME != "TRUE" ]]; then
     while IFS= read -r line; do
@@ -51,10 +54,10 @@ if [[ $LOG_FILE_NAME != "TRUE" ]]; then
             *) LOG_INFO_MESSAGE+="${YELLOW}$line\n${NC}" ;;
         esac
     done < "$LOG_FILE_NAME"
-    if [[ "$LOG_INFO_MESSAGE" == "${BOLD}\nLogs from your $(basename $LOG_FILE_NAME) file :\n\n${NC}" ]]; then
+    if [[ "$LOG_INFO_MESSAGE" == "${BOLD}\nLogs from your $(basename "$LOG_FILE_NAME") file :\n\n${NC}" ]]; then
         LOG_INFO_MESSAGE+="${RED}You don't have any log yet.\n${NC}"
     fi
-    echo -e $LOG_INFO_MESSAGE
+    echo -e "$LOG_INFO_MESSAGE"
 else
-    echo -e "${RED}\nToo much log file name corresponding try again.\n${NC}"
+    echo -e "${RED}\nToo many log files correspond. Try again.\n${NC}"
 fi

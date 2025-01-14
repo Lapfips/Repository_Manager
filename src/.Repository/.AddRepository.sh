@@ -2,8 +2,15 @@
 
 TIME="[$(date +"%Y-%m-%d %T")]"
 
+# Load the installation directory from the config file
+if [ -f "$HOME/.repository_manager_config" ]; then
+    source "$HOME/.repository_manager_config"
+else
+    INSTALL_DIR="$HOME/Repository_Manager"
+fi
+
 if [[ "$1" == "-help" ]]; then
-    echo -e "\nUsage prog -repo -add <category_name> <repository_name>\n"
+    echo -e "\nUsage: prog -repo -add <category_name> <repository_name>\n"
     exit 0
 else
     if [[ -z "$1" ]]; then
@@ -23,24 +30,26 @@ fi
 if [[ $NAME != */* ]]; then
     read -p "Is this your own repository -> $NAME ? (yes/no) : " USER_CHOICE
     case $USER_CHOICE in
-        no)
-            read -p "Enter owner's name : " OWNER_NAME
-            NAME="$OWNER_NAME/$NAME"
+        [Yy]*)
+            USER_PSEUDO=$(sed -n 's/^.*name = //p' ~/.gitconfig)
+            NAME="$USER_PSEUDO/$NAME"
             ;;
-        yes)
-            NAME="$(sed -n 's/^.*name = //p' .gitconfig)/$NAME"
+        [Nn]*)
+            read -p "Enter the repository owner name : " OWNER
+            NAME="$OWNER/$NAME"
+            ;;
+        *)
+            echo -e "\nInvalid choice. Operation cancelled."
+            exit 1
             ;;
     esac
 fi
 
-if [[ ! -f "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
+if [[ ! -f "$INSTALL_DIR/src/.Update_Repositories/.Update_$CAT.sh" ]]; then
     echo -e "\nError: The file for category '$CAT' does not exist."
     exit 1
-fi
-
-if grep -q "\"$NAME\"" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"; then
-    echo -e "\nRepository '$NAME' already exists in $CAT."
 else
-    sed -i "/repositories=( / s#)#$NAME )#" "Repository_Manager/src/.Update_Repositories/.Update_$CAT.sh"
-    echo -e "$TIME - Repository '$NAME' added to $CAT." >> ~/Repository_Manager/logs/repository.log
+    sed -i "/repositories=(/ s/)/ $NAME)/" "$INSTALL_DIR/src/.Update_Repositories/.Update_$CAT.sh"
+    echo -e "$TIME - The repository '$NAME' has been added to the category '$CAT'." >> "$INSTALL_DIR/logs/repository.log"
+    echo -e "\nThe repository '$NAME' has been added to the category '$CAT'."
 fi

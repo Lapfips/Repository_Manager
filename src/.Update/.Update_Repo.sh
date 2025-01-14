@@ -1,6 +1,13 @@
 #!/bin/bash
 
-cd GitRepositories/
+# Load the installation directory from the config file
+if [ -f "$HOME/.repository_manager_config" ]; then
+    source "$HOME/.repository_manager_config"
+else
+    INSTALL_DIR="$HOME/Repository_Manager"
+fi
+
+cd "$HOME/GitRepositories/"
 
 repo_path="$1"
 repo_url="$2"
@@ -23,10 +30,8 @@ if [[ -n $(git status --porcelain) ]]; then
             MESS="$3"
         fi
     else
-        read -p "Enter your commit message for $repo_name repository : " MESS
+        MESS="Update $(date)"
     fi
     git commit -m "$MESS"
     git push
 fi
-
-cd

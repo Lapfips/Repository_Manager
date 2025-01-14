@@ -16,6 +16,8 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
+BOLD=$(tput bold)
+TIME="[$(date +"%Y-%m-%d %T")]"
 
 cd $HOME
 
@@ -59,13 +61,44 @@ mv Repository_Manager-main Repository_Manager
 chmod -R +x Repository_Manager
 rm -f main.zip
 
+# Prompt the user for the installation directory
+read -p "Enter the installation directory (default is $HOME/Repository_Manager): " INSTALL_DIR
+INSTALL_DIR=${INSTALL_DIR:-$HOME/Repository_Manager}
+
+# Create the installation directory if it doesn't exist
+mkdir -p "$INSTALL_DIR"
+
+# Log file location
+LOG_FILE="$INSTALL_DIR/logs/configuration.log"
+
+# Function to log messages
+log_message() {
+    echo -e "$1"
+    echo -e "$TIME - $2" >> "$LOG_FILE"
+}
+
+# Copy all scripts to the installation directory
+cp -r Repository_Manager/* "$INSTALL_DIR"
+
+# Make all scripts executable
+chmod +x "$INSTALL_DIR"/*.sh
+
+# Save the installation directory to a config file
+echo "INSTALL_DIR=$INSTALL_DIR" > "$HOME/.repository_manager_config"
+
+# Add the installation directory to the PATH if it's not already there
+if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
+    echo "export PATH=\$PATH:$INSTALL_DIR" >> ~/.bash_profile
+    source ~/.bash_profile
+fi
+
 # Launching setup.sh
 echo -e "${YELLOW}\nLaunching the setup...${NC}"
-cd Repository_Manager && echo -e "${GREEN}Program launched${NC}" || {
-    echo -e "${RED}Failed to navigate to Repository_Manager. Exiting.${NC}"
+cd "$INSTALL_DIR" && echo -e "${GREEN}Program launched${NC}" || {
+    echo -e "${RED}Failed to navigate to $INSTALL_DIR. Exiting.${NC}"
     exit 1
 }
-./config/setup.sh || echo -e "${RED}\nFailed to execute the setup.${NC}"
+./config/setup.sh "$INSTALL_DIR" || echo -e "${RED}\nFailed to execute the setup.${NC}"
 ```
 
 ## Documentation
