@@ -32,4 +32,4 @@ fi
 echo -e "$TIME - SSH agent successfully started." >> "$INSTALL_DIR/logs/SSH_Environment.log"
 
 # Alias for the main script
-alias prog="bash $INSTALL_DIR/main.sh"
+alias prog="bash $INSTALL_DIR/src/main.sh"

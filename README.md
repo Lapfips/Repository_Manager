@@ -99,6 +99,7 @@ cd "$INSTALL_DIR" && echo -e "${GREEN}Program launched${NC}" || {
     exit 1
 }
 ./config/setup.sh "$INSTALL_DIR" || echo -e "${RED}\nFailed to execute the setup.${NC}"
+cd -
 ```
 
 ## Documentation
