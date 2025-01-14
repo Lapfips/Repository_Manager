@@ -33,7 +33,7 @@ Count_Categories
 text="${BOLD}\nYour categories and repositories structure : \n\n${NC}"
 
 if [[ $REPOSITORIES_COUNT != 0 ]]; then
-    for cat in $(ls -a "$UPDATE_REPO_DIR/.Update_*.sh"); do
+    for cat in $(ls -a "$UPDATE_REPO_DIR/.Update_"*); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             cat_basename=$(basename "$cat")
             cat=${cat_basename#".Update_"}
