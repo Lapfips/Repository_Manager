@@ -141,4 +141,6 @@ source "$HOME/.bash_profile" || {
     exit 1
 }
 
+rm -rf "Repository_Manager"
+
 log_message "${GREEN}Setup completed successfully.${NC}" "Setup completed successfully."
