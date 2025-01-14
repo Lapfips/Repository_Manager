@@ -42,8 +42,8 @@ SCRIPT_DIR="$INSTALL_DIR"
 
 # Check if the function script exists and execute it
 if [[ -f "$SCRIPT_DIR/$FUNC.sh" ]]; then
-    "$SCRIPT_DIR/$FUNC.sh" "$2" "$3" "$4" "$5"
+    bash "$SCRIPT_DIR/$FUNC.sh" "$2" "$3" "$4" "$5"
 else
-    echo -e "\nFunction script $FUNC.sh not found."
+    echo -e "\nFunction script $SCRIPT_DIR/$FUNC.sh not found."
     exit 1
 fi
