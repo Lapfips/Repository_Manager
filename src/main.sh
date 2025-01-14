@@ -38,7 +38,7 @@ case $FUNC in
 esac
 
 # Define the path to the function scripts
-SCRIPT_DIR="$INSTALL_DIR"
+SCRIPT_DIR="$INSTALL_DIR/src"
 
 # Check if the function script exists and execute it
 if [[ -f "$SCRIPT_DIR/$FUNC.sh" ]]; then
