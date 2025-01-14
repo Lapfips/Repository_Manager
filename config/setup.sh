@@ -80,6 +80,37 @@ if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
     source ~/.bash_profile
 fi
 
+# Configuring .gitconfig accorded to the user choice
+log_message "${YELLOW}\nChecking for .gitconfig file...${NC}" "Checking for .gitconfig file..."
+if [[ -f "$HOME/.gitconfig" ]]; then
+    echo -e "${BOLD}Current content of your .gitconfig file:${NC}"
+    cat "$HOME/.gitconfig"
+    while true; do
+        read -p "${CYAN}Do you want to overwrite your .gitconfig? (y or n): ${NC} " CHOICE
+        case $CHOICE in
+            [Yy]*)
+                read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
+                read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
+                git config --global user.name "$NAME"
+                git config --global user.email "$EMAIL"
+                log_message "${GREEN}.gitconfig has been updated successfully.${NC}" ".gitconfig updated successfully."
+                break ;;
+            [Nn]*)
+                log_message "${GREEN}No changes were made to your .gitconfig file.${NC}" "No changes made to .gitconfig."
+                break ;;
+            *)
+                log_message "${RED}Please answer y or n.${NC}" "Invalid response for .gitconfig overwrite choice." ;;
+        esac
+    done
+else
+    log_message "${YELLOW}Creating a new .gitconfig file...${NC}" "No .gitconfig file found. Creating one..."
+    read -p "${BOLD}Enter your GitHub email: ${NC} " EMAIL
+    read -p "${BOLD}Enter your GitHub name: ${NC} " NAME
+    git config --global user.name "$NAME"
+    git config --global user.email "$EMAIL"
+    log_message "${GREEN}.gitconfig file created successfully.${NC}" ".gitconfig created successfully."
+fi
+
 # Check if .bash_profile exists
 if [ -f "$HOME/.bash_profile" ]; then
     echo -e "${BOLD}Current content of your .bash_profile file:${NC}"
