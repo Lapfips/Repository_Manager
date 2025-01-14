@@ -28,7 +28,7 @@ fi
 # Function to count categories
 function Count_Categories() {
     REPOSITORIES_COUNT=0
-    for cat in $(ls -a "$INSTALL_DIR/src/.Update_Repositories/.Update_*.sh"); do
+    for cat in $(ls -a "$INSTALL_DIR/src/.Update_Repositories/.Update_"*); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             REPOSITORIES_COUNT=1
         fi
@@ -40,7 +40,7 @@ Count_Categories
 text="${BOLD}\nYour categories and repositories structure : \n\n${NC}"
 
 if [[ $REPOSITORIES_COUNT != 0 ]]; then
-    for cat in $(ls -a "$INSTALL_DIR/src/.Update_Repositories/.Update_*.sh"); do
+    for cat in $(ls -a "$INSTALL_DIR/src/.Update_Repositories/.Update_"*); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             cat_basename=$(basename "$cat")
             cat=${cat_basename#".Update_"}
