@@ -21,7 +21,7 @@ UPDATE_REPO_DIR="$INSTALL_DIR/.Update_Repositories"
 # Function to count categories
 Count_Categories() {
     REPOSITORIES_COUNT=0
-    for cat in $(ls -a "$UPDATE_REPO_DIR/.Update_*.sh"); do
+    for cat in $(ls -a "$UPDATE_REPO_DIR/.Update_"*); do
         if [[ $(basename "$cat") != ".Update_All.sh" ]]; then
             REPOSITORIES_COUNT=1
         fi

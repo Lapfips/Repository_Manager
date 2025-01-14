@@ -135,12 +135,4 @@ else
     log_message "${GREEN}.bash_profile file created successfully.${NC}" ".bash_profile created successfully."
 fi
 
-# Source the .bash_profile
-source "$HOME/.bash_profile" || {
-    log_message "${RED}Failed to source .bash_profile. Ensure it is valid.${NC}" "Failed to source .bash_profile."
-    exit 1
-}
-
-rm -rf "Repository_Manager"
-
 log_message "${GREEN}Setup completed successfully.${NC}" "Setup completed successfully."
