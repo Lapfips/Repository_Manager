@@ -14,7 +14,8 @@ function Check_Choiced_Repository() {
     else
         echo -e "\nInvalid parameter '$1'"
         exit 1
-    }
+    fi
+}
 
 # Define the path to the update repositories
 UPDATE_REPO_DIR="$INSTALL_DIR/.Update_Repositories"
