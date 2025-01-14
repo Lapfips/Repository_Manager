@@ -18,7 +18,7 @@ function Check_Choiced_Repository() {
 }
 
 # Define the path to the update repositories
-UPDATE_REPO_DIR="$INSTALL_DIR/.Update_Repositories"
+UPDATE_REPO_DIR="$INSTALL_DIR/src/.Update_Repositories"
 REPO_PATH="$HOME/GitRepositories"
 
 # Prompt the user for the update type if not provided as an argument

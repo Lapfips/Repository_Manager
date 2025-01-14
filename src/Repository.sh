@@ -34,7 +34,7 @@ case $OPT in
 esac
 
 # Define the path to the function scripts
-SCRIPT_DIR="$INSTALL_DIR/.Repository"
+SCRIPT_DIR="$INSTALL_DIR/src/.Repository"
 
 # Check if the function script exists and execute it
 if [[ -f "$SCRIPT_DIR/.$FUNC.sh" ]]; then
